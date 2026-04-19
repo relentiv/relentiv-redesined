@@ -180,7 +180,7 @@ export function Navbar() {
   );
 
   const navLinks = [
-    { name: "Work",     href: "#work" },
+    { name: "Work",     href: "/work" },
     { name: "Services", href: "#services" },
     { name: "Studio",   href: "#studio" },
     { name: "About",    href: "/about" },
@@ -330,13 +330,13 @@ export function Navbar() {
               className="mt-auto"
             >
               <div className="mb-8 flex gap-4 text-sm font-medium text-white/50">
-                <Link href="#" className="hover:text-white transition-colors">
-                  Twitter
+                <Link href="https://x.com/relentiv_global" className="hover:text-white transition-colors">
+                  X/Twitter
                 </Link>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="https://www.instagram.com/relentivlabs/" className="hover:text-white transition-colors">
                   Instagram
                 </Link>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="https://www.linkedin.com/company/relentiv/" className="hover:text-white transition-colors">
                   LinkedIn
                 </Link>
               </div>
