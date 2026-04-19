@@ -260,7 +260,6 @@ const PrismaticBurst = ({
     gl.canvas.style.inset = '0';
     gl.canvas.style.width = '100%';
     gl.canvas.style.height = '100%';
-    gl.canvas.style.mixBlendMode = mixBlendMode && mixBlendMode !== 'none' ? mixBlendMode : '';
     container.appendChild(gl.canvas);
 
     const white = new Uint8Array([255, 255, 255, 255]);
@@ -361,6 +360,7 @@ const PrismaticBurst = ({
       const sm = mouseSmoothRef.current;
       sm[0] += (tgt[0] - sm[0]) * alpha;
       sm[1] += (tgt[1] - sm[1]) * alpha;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       program.uniforms.uMouse.value = sm as any;
       program.uniforms.uTime.value = accumTime;
       renderer.render({ scene: meshRef.current! });
@@ -397,6 +397,7 @@ const PrismaticBurst = ({
   useEffect(() => {
     const canvas = rendererRef.current?.gl?.canvas as HTMLCanvasElement | undefined;
     if (canvas) {
+      // eslint-disable-next-line react-hooks/immutability
       canvas.style.mixBlendMode = mixBlendMode && mixBlendMode !== 'none' ? mixBlendMode : '';
     }
   }, [mixBlendMode]);

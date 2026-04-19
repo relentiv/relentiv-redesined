@@ -123,12 +123,13 @@ export default function Aurora(props: AuroraProps) {
   const { 
     colorStops = ['#5227FF', '#7cff67', '#5227FF'], 
     amplitude = 1.0, 
-    blend = 0.5,
-    speed = 1.0
+    blend = 0.5
   } = props;
   
   const propsRef = useRef(props);
-  propsRef.current = props;
+  useEffect(() => {
+    propsRef.current = props;
+  }, [props]);
 
   const ctnDom = useRef<HTMLDivElement>(null);
 
@@ -147,6 +148,7 @@ export default function Aurora(props: AuroraProps) {
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.backgroundColor = 'transparent';
 
+    // eslint-disable-next-line prefer-const
     let program: Program;
 
     function resize() {

@@ -35,8 +35,9 @@ const services = [
 export function WhatWeDo() {
   return (
     <section
+      id="services"
       aria-labelledby="what-we-do-heading"
-      className="w-full relative min-h-[90vh] flex flex-col items-start pt-32 md:pt-40 lg:pt-48 pb-20"
+      className="w-full relative min-h-[90vh] flex flex-col items-start pt-20 md:pt-40 lg:pt-48 pb-20"
     >
       {/* WebGL Background */}
       <div className="absolute inset-0 z-0 overflow-hidden rounded-t-3xl md:rounded-t-[3rem]">
@@ -69,7 +70,7 @@ export function WhatWeDo() {
           </h2>
           {/* Subtitle — instantly tells visitors who you are */}
           <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-medium max-w-xl drop-shadow-md">
-            We're a product engineering company. We turn ideas into software —
+            We&apos;re a product engineering company. We turn ideas into software —
             web, mobile, AI, and game experiences built for real users and real
             scale.
           </p>
@@ -80,7 +81,7 @@ export function WhatWeDo() {
           {services.map((service) => (
             <article
               key={service.num}
-              className="group relative p-8 md:p-10 bg-white/[0.09] hover:bg-white/[0.07] transition-colors duration-300 border border-transparent"
+              className="group relative p-5 md:p-10 bg-white/[0.09] hover:bg-white/[0.07] transition-colors duration-300 border border-transparent"
             >
               {/* Number + Title row */}
               <div className="flex items-start gap-4 mb-4">
@@ -93,12 +94,12 @@ export function WhatWeDo() {
               </div>
 
               {/* Hook line — scannable, keyword-rich */}
-              <p className="text-sm font-semibold text-purple-200 tracking-wide mb-3 ml-8 drop-shadow-sm">
+              <p className="text-sm font-semibold text-purple-200 tracking-wide mb-3 ml-0 sm:ml-8 drop-shadow-sm">
                 {service.hook}
               </p>
 
               {/* Description */}
-              <p className="text-gray-200 font-medium leading-relaxed text-sm md:text-base ml-8">
+              <p className="text-gray-200 font-medium leading-relaxed text-sm md:text-base ml-0 sm:ml-8">
                 {service.description}
               </p>
             </article>

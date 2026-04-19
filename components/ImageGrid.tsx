@@ -65,8 +65,10 @@ export function ImageGrid() {
 
   useEffect(() => {
     if (isHovered) {
-      setActiveIndex(-1);
-      return;
+      const timeoutId = setTimeout(() => {
+        setActiveIndex(-1);
+      }, 0);
+      return () => clearTimeout(timeoutId);
     }
 
     // Pick a random index every 3 seconds to highlight, when idle.

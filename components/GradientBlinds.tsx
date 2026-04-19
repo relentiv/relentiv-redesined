@@ -40,6 +40,7 @@ interface GradientBlindsProps {
   spotlightOpacity?: number;
   distortAmount?: number;
   shineDirection?: 'left' | 'right';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mixBlendMode?: any;
 }
 
@@ -278,6 +279,7 @@ void main() {
     const ro = new ResizeObserver(resize);
     ro.observe(container);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onPointerMove = (e: any) => {
       const rect = canvas.getBoundingClientRect();
       const scale = renderer.dpr || 1;
@@ -324,6 +326,7 @@ void main() {
       if (canvas.parentElement === container) {
         container.removeChild(canvas);
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const callIfFn = (obj: any, key: string) => {
         if (obj && typeof obj[key] === 'function') {
           obj[key].call(obj);

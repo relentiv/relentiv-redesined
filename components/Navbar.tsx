@@ -2,13 +2,22 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { getCalApi } from "@calcom/embed-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+async function openCalPopup() {
+  const cal = await getCalApi();
+  cal("modal", {
+    calLink: "relentiv/30min",
+  });
 }
 
 type NavTheme = "dark" | "light";
@@ -136,11 +145,45 @@ export function Navbar() {
     };
   }, [isOpen]);
 
+  const router = useRouter();
+  const pathname = usePathname();
+
+  /** Smoothly scrolls to a section by id. Returns true if found. */
+  const scrollToSection = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    }
+    return false;
+  }, []);
+
+  /**
+   * Handle nav link clicks:
+   * - If href is a hash (#section) and we're already on "/", scroll in-page.
+   * - Otherwise, go to home with ?scrollTo=<section> so the home page handles scrolling.
+   * - For regular non-hash links (like "/about") just navigate normally.
+   */
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent, href: string) => {
+      if (!href.startsWith("#")) return; // let <Link> handle normal routes
+      e.preventDefault();
+      const sectionId = href.slice(1); // strip the "#"
+      if (pathname === "/") {
+        scrollToSection(sectionId);
+      } else {
+        // Navigate to home and signal which section to scroll to
+        router.push(`/?scrollTo=${sectionId}`);
+      }
+    },
+    [pathname, router, scrollToSection]
+  );
+
   const navLinks = [
-    { name: "Work", href: "#work" },
+    { name: "Work",     href: "#work" },
     { name: "Services", href: "#services" },
-    { name: "Studio", href: "#studio" },
-    { name: "Insights", href: "#insights" },
+    { name: "Studio",   href: "#studio" },
+    { name: "About",    href: "/about" },
   ];
 
   const isDark = theme === "dark";
@@ -198,6 +241,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
                   "px-5 py-2 text-sm font-medium transition-colors duration-300 rounded-full",
                   textMuted,
@@ -210,17 +254,17 @@ export function Navbar() {
           </div>
 
           {/* CTA Button */}
-          {/* <div className="hidden md:flex items-center">
-            <Link
-              href="#contact"
+          <div className="hidden md:flex items-center">
+            <button
+              onClick={openCalPopup}
               className={cn(
                 "px-6 py-2 rounded-full border-2 border-dotted font-mono tracking-[0.2em] text-xs uppercase transition-all duration-300 ease-in-out whitespace-nowrap",
                 ctaBorder
               )}
             >
               Start Project
-            </Link>
-          </div> */}
+            </button>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -260,7 +304,10 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      setIsOpen(false);
+                      handleNavClick(e, link.href);
+                    }}
                     className="text-4xl font-medium tracking-tight text-white flex items-center justify-between py-4 border-b border-white/10 group"
                   >
                     <span>{link.name}</span>
@@ -293,13 +340,15 @@ export function Navbar() {
                   LinkedIn
                 </Link>
               </div>
-              <Link
-                href="#contact"
-                onClick={() => setIsOpen(false)}
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  openCalPopup();
+                }}
                 className="w-full py-4 text-center block rounded-full border-2 border-dotted border-white/40 text-white font-mono tracking-[0.2em] text-sm uppercase hover:bg-white hover:text-black hover:border-solid hover:border-white transition-all duration-300 ease-in-out"
               >
-                Start A Project
-              </Link>
+                Start Project
+              </button>
             </motion.div>
           </motion.div>
         )}

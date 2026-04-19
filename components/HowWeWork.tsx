@@ -66,7 +66,7 @@ const steps = [
 
 export default function HowWeWork() {
   return (
-    <section className="relative overflow-hidden border-t border-white/5 bg-[#020202] py-20 md:py-32" aria-labelledby="how-we-work-title">
+    <section className="relative overflow-hidden border-t border-white/5 bg-[#020202] py-14 md:py-32" aria-labelledby="how-we-work-title">
 
       <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl md:rounded-[3rem]">
         <Beams
@@ -124,7 +124,7 @@ export default function HowWeWork() {
 
                   <div className="pb-12 pt-2 md:pb-0 md:pt-0 relative z-10">
                     <h3 className="mb-3 text-xl font-medium tracking-tight text-white drop-shadow-lg [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]">{step.title}</h3>
-                    <p className="mb-6 min-h-[80px] text-sm leading-relaxed text-gray-300 drop-shadow-md font-medium">{step.desc}</p>
+                    <p className="mb-6 min-h-0 md:min-h-[80px] text-sm leading-relaxed text-gray-300 drop-shadow-md font-medium">{step.desc}</p>
 
                     <ul className="flex items-center gap-3">
                       {step.icons.map((iconObj) => (
