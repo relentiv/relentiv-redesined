@@ -71,10 +71,16 @@ const GradientBlinds = ({
   const mouseTargetRef = useRef<[number, number]>([0, 0]);
   const lastTimeRef = useRef<number>(0);
   const firstResizeRef = useRef<boolean>(true);
+  const visibilityRef = useRef<boolean>(false);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visibilityRef.current = entry.isIntersecting;
+    }, { rootMargin: '100px' });
+    observer.observe(container);
 
     const renderer = new Renderer({
       dpr: dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1),
@@ -309,6 +315,9 @@ void main() {
       } else {
         lastTimeRef.current = t;
       }
+
+      if (!visibilityRef.current) return;
+
       if (!paused && programRef.current && meshRef.current) {
         try {
           renderer.render({ scene: meshRef.current });
@@ -320,6 +329,7 @@ void main() {
     rafRef.current = requestAnimationFrame(loop);
 
     return () => {
+      observer.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       canvas.removeEventListener('pointermove', onPointerMove);
       ro.disconnect();

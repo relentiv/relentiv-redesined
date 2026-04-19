@@ -326,7 +326,7 @@ const PixelBlast = ({
   noiseAmount = 0
 }) => {
   const containerRef = useRef(null);
-  const visibilityRef = useRef({ visible: true });
+  const visibilityRef = useRef({ visible: false }); // Start false to prevent early render if offscreen
   const speedRef = useRef(speed);
 
   const threeRef = useRef(null);
@@ -335,6 +335,15 @@ const PixelBlast = ({
     const container = containerRef.current;
     if (!container) return;
     speedRef.current = speed;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visibilityRef.current.visible = entry.isIntersecting;
+      },
+      { rootMargin: '100px' }
+    );
+    observer.observe(container);
+
     const needsReinitKeys = ['antialias', 'liquid', 'noiseAmount'];
     const cfg = { antialias, liquid, noiseAmount };
     let mustReinit = false;
@@ -368,7 +377,7 @@ const PixelBlast = ({
       });
       renderer.domElement.style.width = '100%';
       renderer.domElement.style.height = '100%';
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
       container.appendChild(renderer.domElement);
       if (transparent) renderer.setClearAlpha(0);
       else renderer.setClearColor(0x000000, 1);
@@ -560,6 +569,7 @@ const PixelBlast = ({
     }
     prevConfigRef.current = cfg;
     return () => {
+      observer.disconnect();
       if (threeRef.current && mustReinit) return;
       if (!threeRef.current) return;
       const t = threeRef.current;
