@@ -3,8 +3,16 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
+interface GridItem {
+  id: number;
+  type: "screenshot" | "logo";
+  name: string;
+  imageUrl?: string;
+  svg?: string;
+}
+
 // Dummy data setup utilizing embedded cleaner SVGs, custom styles, and image support.
-const GRID_ITEMS = [
+const GRID_ITEMS: GridItem[] = [
   { 
     id: 1, type: "screenshot", name: "Custom Image", 
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIW3ZPjGJEfa-ubPtIRay7wwfBHmkIYf5L7A&s"

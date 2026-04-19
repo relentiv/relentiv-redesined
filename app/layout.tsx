@@ -20,8 +20,11 @@ const doto = Doto({
 });
 
 export const metadata: Metadata = {
-  title: "Relentiv | Modern Design Agency",
-  description: "A reimagined digital experience for your brand.",
+  title: "Relentiv | Engineering the Future of Tech",
+  description: "A Bengaluru-based technology studio specializing in web, mobile, game engineering, and AI-integrated systems for enterprise clients.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
