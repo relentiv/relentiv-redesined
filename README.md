@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## 📝 Blog & CMS
+
+This project includes a fully integrated **Sanity CMS** for blog management!
+
+**Quick Setup:** See [SANITY_QUICKSTART.md](./SANITY_QUICKSTART.md) for 5-minute setup guide.
+
+**Full Documentation:** See [README_SANITY.md](./README_SANITY.md) for complete details.
+
+- 🎨 **Studio:** http://localhost:3000/studio
+- 📰 **Blog:** http://localhost:3000/blog
+
 ## Getting Started
 
 First, run the development server:

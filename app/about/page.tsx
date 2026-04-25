@@ -6,10 +6,12 @@ import { motion, Variants } from 'framer-motion';
 export default function AboutPage() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
     "name": "Relentiv",
+    "url": "https://relentiv.com",
     "image": "https://relentiv.com/logo.png",
     "email": "contact@relentiv.com",
+    "priceRange": "$$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Marvel Nest",
@@ -17,6 +19,10 @@ export default function AboutPage() {
       "addressRegion": "Karnataka",
       "postalCode": "560068",
       "addressCountry": "IN"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Bengaluru"
     },
     "description": "Premium Bengaluru-based technology studio specializing in web, mobile, game engineering, and AI-integrated systems."
   };
@@ -90,32 +96,43 @@ export default function AboutPage() {
             className="flex flex-col gap-10 pointer-events-auto"
           >
             <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold tracking-tight">Our Philosophy</motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { title: "Precision", text: "Every pixel, every line of code is intentional. We build systems that are robust, scalable, and mathematically beautiful." },
                 { title: "Agility", text: "Moving fast without breaking things. Our iterative process ensures rapid delivery while maintaining enterprise-grade stability." },
                 { title: "Aesthetics", text: "Performance is a feature, but beauty is a requirement. We craft experiences that feel organic, premium, and captivating." }
               ].map((val, i) => (
-                <motion.article key={i} variants={fadeInUp} className="p-10 rounded-[2rem] bg-white/[0.02] backdrop-blur-xl border border-white/10 hover:bg-white/[0.04] transition-colors duration-500 hover:border-white/20">
+                <motion.li key={i} variants={fadeInUp} className="p-10 rounded-[2rem] bg-white/[0.02] backdrop-blur-xl border border-white/10 hover:bg-white/[0.04] transition-colors duration-500 hover:border-white/20 list-none">
                   <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-doto)" }}>{val.title}</h3>
                   <p className="text-[#f5f5f5]/70 text-lg leading-relaxed">{val.text}</p>
-                </motion.article>
+                </motion.li>
               ))}
-            </div>
+            </ul>
           </motion.section>
 
-          {/* TEAM PLACEHOLDER UI */}
+          {/* TECHNICAL EXPERTISE */}
           <motion.section 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
             className="flex flex-col gap-10 pointer-events-auto"
           >
-            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold tracking-tight">Leadership</motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-              {[1, 2, 3, 4].map((i) => (
-                <motion.div key={i} variants={fadeInUp} className="aspect-[3/4] rounded-3xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/5 flex flex-col items-center justify-center relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
+            <div className="flex flex-col gap-4">
+              <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold tracking-tight">Technical Expertise</motion.h2>
+              <motion.p variants={fadeInUp} className="text-[#f5f5f5]/70 text-lg md:text-xl max-w-2xl">
+                We are structured as an elite strike team. We deploy cutting-edge technical stacks to build high-performance products tailored for scale.
+              </motion.p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { name: "Web Systems", desc: "Next.js, React, WebGL" },
+                { name: "Mobile Apps", desc: "React Native, Swift" },
+                { name: "Game Engineering", desc: "Unity, Procedural Gen" },
+                { name: "AI Integration", desc: "LLMs, Deep Learning" }
+              ].map((skill, i) => (
+                <motion.div key={i} variants={fadeInUp} className="p-8 rounded-3xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/5 flex flex-col items-center justify-center relative overflow-hidden group hover:border-white/10 transition-colors duration-500 min-h-[200px] text-center">
                   <div className="absolute inset-0 bg-white/[0.01] group-hover:bg-white/[0.03] transition-colors duration-500" />
-                  <div className="w-12 h-[2px] rounded-full bg-white/20 group-hover:w-16 group-hover:bg-[#B497CF] transition-all duration-500" />
-                  <div className="w-8 h-[2px] mt-2 rounded-full bg-white/10 group-hover:w-10 group-hover:bg-[#B497CF]/50 transition-all duration-500 delay-75" />
+                  <h3 className="text-xl font-bold text-white relative z-10 mb-2" style={{ fontFamily: "var(--font-doto)" }}>{skill.name}</h3>
+                  <p className="text-[#f5f5f5]/60 text-sm relative z-10">{skill.desc}</p>
                 </motion.div>
               ))}
             </div>

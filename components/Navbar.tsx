@@ -147,6 +147,7 @@ export function Navbar() {
 
   const router = useRouter();
   const pathname = usePathname();
+  const isStudioRoute = pathname === "/studio" || pathname.startsWith("/studio/");
 
   /** Smoothly scrolls to a section by id. Returns true if found. */
   const scrollToSection = useCallback((id: string) => {
@@ -182,11 +183,12 @@ export function Navbar() {
   const navLinks = [
     { name: "Work",     href: "/work" },
     { name: "Services", href: "#services" },
-    { name: "Studio",   href: "#studio" },
+    { name: "Blog",     href: "/blog" },
     { name: "About",    href: "/about" },
   ];
 
-  const isDark = theme === "dark";
+  const isBlogRoute = pathname === "/blog" || pathname.startsWith("/blog/");
+  const isDark = isBlogRoute || theme === "dark";
 
   // Derived color tokens based on detected theme
   const textColor = isDark ? "text-white" : "text-black";
@@ -195,11 +197,17 @@ export function Navbar() {
   const pillBorder = isDark ? "border-white/10" : "border-black/10";
   const pillHover = isDark ? "hover:text-white hover:bg-white/10" : "hover:text-black hover:bg-black/10";
   const ctaBorder = isDark ? "border-white/40 text-white hover:bg-white hover:text-black hover:border-white" : "border-black/40 text-black hover:bg-black hover:text-white hover:border-black";
-  const glassBg = scrolled
+  const glassBg = isBlogRoute
+    ? "bg-black border-b border-white/10 shadow-lg"
+    : scrolled
     ? isDark
       ? "bg-black/10 backdrop-blur-xl border-b border-white/10 shadow-lg"
       : "bg-white/10 backdrop-blur-xl border-b border-black/10 shadow-lg"
     : "bg-transparent";
+
+  if (isStudioRoute) {
+    return null;
+  }
 
   return (
     <>

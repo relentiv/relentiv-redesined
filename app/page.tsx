@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { Hero } from "@/components/Hero";
 import HowWeWork from "@/components/HowWeWork";
+import { TechStack } from "@/components/TechStack";
 import { WhatWeDo } from "@/components/WhatWeDo";
 import { Footer } from "@/components/Footer";
 
@@ -27,6 +28,7 @@ export default function Home() {
     <main className="flex-1 flex flex-col">
       <Hero />
       <WhatWeDo/>
+      <TechStack/>
       <HowWeWork/>
       <Footer />
     </main>

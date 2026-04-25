@@ -158,3 +158,113 @@ cal-modal-box {
     padding: 40px !important;
   }
 }
+
+.static-image-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.static-image-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.58) 34%, rgba(0, 0, 0, 0.42) 64%, rgba(0, 0, 0, 0.74) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.34) 34%, rgba(0, 0, 0, 0.86) 100%);
+}
+
+.static-image-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(14px) saturate(1.12);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.08)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.42), transparent 22%, transparent 78%, rgba(0, 0, 0, 0.46));
+  mask-image: linear-gradient(90deg, black 0%, transparent 18%, transparent 82%, black 100%);
+}
+
+.agency-gradient-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% -12%, rgba(136, 82, 255, 0.34), transparent 32rem),
+    radial-gradient(circle at 14% 8%, rgba(93, 48, 168, 0.18), transparent 22rem),
+    radial-gradient(circle at 84% 12%, rgba(38, 74, 145, 0.14), transparent 24rem),
+    linear-gradient(180deg, #090411 0%, #050309 42%, #010104 100%);
+}
+
+.agency-gradient-background::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.052) 1px, transparent 1px);
+  background-size: 92px 92px;
+  background-position: center top;
+  mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.66) 32%, transparent 70%);
+}
+
+.agency-gradient-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 7% 19%, rgba(168, 133, 255, 0.52) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 15% 38%, rgba(112, 88, 244, 0.42) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 27% 16%, rgba(255, 255, 255, 0.24) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 38% 58%, rgba(112, 88, 244, 0.4) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.2) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 60% 66%, rgba(168, 133, 255, 0.38) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 74% 37%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 86% 21%, rgba(112, 88, 244, 0.5) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 94% 52%, rgba(168, 133, 255, 0.36) 0 1px, transparent 1.5px),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.42) 62%, rgba(0, 0, 0, 0.86) 100%);
+  opacity: 0.72;
+}
+/* ─── Blog reader ─── */
+.reader-content {
+  transition: max-width 220ms ease, font-size 220ms ease;
+}
+
+.reader-content .reader-paragraph {
+  margin: 1.35rem 0;
+  line-height: 1.9;
+}
+
+.reader-content .reader-list li::marker {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+body.reading-mode .blog-article-shell {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 20rem),
+    #030303 !important;
+}
+
+body.reading-mode .blog-article-shell header {
+  max-width: var(--reader-measure, 50rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.reading-mode .reader-content .reader-paragraph {
+  color: rgba(255, 255, 255, 0.76) !important;
+  line-height: 2;
+}
+
+body.reading-mode .reader-content .reader-heading {
+  color: rgba(255, 255, 255, 0.94) !important;
+}
+
+body.reading-mode .reader-content a {
+  color: #ffffff;
+}

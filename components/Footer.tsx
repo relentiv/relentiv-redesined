@@ -46,7 +46,7 @@ export function Footer() {
               </div>
               
               <div className="mt-8 text-[11px] font-medium tracking-wide text-zinc-500">
-                © 2026 RELENTIV SE, & CO. KG
+                © {new Date().getFullYear()} Relentiv. All rights reserved.
               </div>
             </div>
 
@@ -56,39 +56,14 @@ export function Footer() {
                 <h3 className="text-white/60 text-sm font-medium mb-5">Company</h3>
                 <ul className="space-y-3.5 text-sm font-medium">
                   <li><Link href="/about" className="text-white hover:text-white/70 transition-colors">About</Link></li>
-                  {/* <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Careers</Link></li> */}
-                  {/* <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Relentiv Foundation</Link></li> */}
-                  {/* <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Press</Link></li> */}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-white/60 text-sm font-medium mb-5">Getting Started</h3>
-                <ul className="space-y-3.5 text-sm font-medium">
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">FAQ</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Security and Trust</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Implementation Process</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Partner Program</Link></li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-white/60 text-sm font-medium mb-5">Support</h3>
-                <ul className="space-y-3.5 text-sm font-medium">
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Voyager Community</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Developer Hub</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Customer Advisory Board</Link></li>
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-white/60 text-sm font-medium mb-5">Legal</h3>
                 <ul className="space-y-3.5 text-sm font-medium">
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Terms</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Privacy Policy</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Cookie Settings</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Legal Notice</Link></li>
-                  <li><Link href="#" className="text-white hover:text-white/70 transition-colors">Site Map</Link></li>
+                  <li><Link href="/terms-of-service" className="text-white hover:text-white/70 transition-colors">Terms of Service</Link></li>
+                  <li><Link href="/privacy-policy" className="text-white hover:text-white/70 transition-colors">Privacy Policy</Link></li>
                 </ul>
               </div>
 
@@ -102,10 +77,10 @@ export function Footer() {
               </div>
 
               <address className="not-italic">
-                <h3 className="text-white/60 text-sm font-medium mb-5">Contact Sales</h3>
+                <h3 className="text-white/60 text-sm font-medium mb-5">Contact & Location</h3>
                 <ul className="space-y-3.5 text-sm font-medium">
-                  {/* <li><a href="tel:+442033144377" className="text-white hover:text-white/70 transition-colors">+44 20 3314 4377</a></li> */}
                   <li><a href="mailto:contact@relentiv.com" className="text-white hover:text-white/70 transition-colors">contact@relentiv.com</a></li>
+                  <li className="text-white/70 mt-2">Bengaluru, India</li>
                 </ul>
               </address>
             </nav>

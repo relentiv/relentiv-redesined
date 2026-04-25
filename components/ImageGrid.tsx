@@ -14,22 +14,22 @@ interface GridItem {
 // Dummy data setup utilizing embedded cleaner SVGs, custom styles, and image support.
 const GRID_ITEMS: GridItem[] = [
   { 
-    id: 1, type: "screenshot", name: "Custom Image", 
-    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIW3ZPjGJEfa-ubPtIRay7wwfBHmkIYf5L7A&s"
+    id: 1, type: "screenshot", name: "framer", 
+    imageUrl: "https://cdn.dribbble.com/userupload/16412218/file/original-f75962ab9287b87237d2f27ced3ecb26.png?resize=1600x1200"
   },
   { id: 2, type: "screenshot", name: "Agency Dashboard",
     imageUrl:"https://www.drupal.org/files/issues/2024-08-13/redis-logo-red-black-background.png"
    },
   { 
     id: 3, type: "logo", name: "webflow", 
-    imageUrl: `https://dhygzobemt712.cloudfront.net/Logo/Social_Square_White.png` 
+    imageUrl: `https://static.vecteezy.com/system/resources/previews/067/565/505/non_2x/webflow-logo-rounded-free-png.png` 
   },
    { 
     id: 4, type: "logo", name: "behance", 
     imageUrl:"https://img.freepik.com/premium-vector/behance-logo-icon-social-media_534308-21950.jpg?semt=ais_hybrid&w=740&q=80" 
   },
-  { id: 5, type: "screenshot", name: "cloudflare",
-    imageUrl:"https://www.webasha.com/uploads/course/images/65dede68471f21709104744.google-cloud.jpg"
+  { id: 5, type: "screenshot", name: "google cloud",
+    imageUrl:"https://cdn.postindustria.com/wp-content/uploads/2021/08/GCP-cloud@2x.jpg"
    },
   { 
     id: 6, type: "logo", name: "mongodb", 
@@ -92,7 +92,7 @@ export function ImageGrid() {
       <div 
         className="grid grid-cols-4 grid-rows-3 w-full aspect-[4/3] relative"
         style={{
-          maskImage: "radial-gradient(ellipse at center, black 65%, transparent 100%)",
+          maskImage: "radial-gradient(ellipse at center, black 95%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse at center, black 65%, transparent 100%)",
         }}
       >
