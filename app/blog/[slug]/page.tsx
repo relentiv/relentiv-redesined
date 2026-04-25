@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
+import { cache } from "react";
 import { client } from "@/sanity/client";
 import { postBySlugQuery, postSlugsQuery } from "@/sanity/queries";
 import { urlFor } from "@/sanity/image";
 import { Post } from "@/sanity/types";
-import { formatPostDate, getReadingTime } from "@/lib/blog";
+import { formatPostDate, getPortableTextPlainText, getReadingTime } from "@/lib/blog";
+import { absoluteUrl, createPageMetadata } from "@/lib/seo";
+import { blogPostingSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PortableText, type PortableTextComponents } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
@@ -83,7 +89,7 @@ const portableTextComponents: PortableTextComponents = {
         <figure className="my-10">
           <div className="relative aspect-[16/10] overflow-hidden border border-white/10 bg-white/[0.04]">
             <Image
-              src={urlFor(image).width(1400).height(875).url()}
+              src={urlFor(image).width(1400).height(875).auto("format").fit("crop").url()}
               alt={image.alt || ""}
               fill
               sizes="(min-width: 768px) 896px, 100vw"
@@ -102,26 +108,75 @@ const portableTextComponents: PortableTextComponents = {
   },
 };
 
+export const revalidate = 3600;
+
+const getPost = cache(async (slug: string) => {
+  return client.fetch<Post | null>(postBySlugQuery, { slug });
+});
+
 export async function generateStaticParams() {
   const slugs: string[] = await client.fetch(postSlugsQuery);
   return slugs.map((slug) => ({ slug }));
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return createPageMetadata({
+      title: "Blog post not found",
+      description: "The requested Relentiv blog post could not be found.",
+      path: `/blog/${slug}`,
+      noIndex: true,
+    });
+  }
+
+  const plainText = getPortableTextPlainText(post.body);
+  const description = post.seo?.metaDescription || post.excerpt || plainText.slice(0, 160);
+  const image = post.mainImage
+    ? urlFor(post.mainImage.asset).width(1200).height(630).auto("format").fit("crop").url()
+    : undefined;
+
+  return createPageMetadata({
+    title: post.seo?.metaTitle || post.title,
+    description,
+    path: `/blog/${slug}`,
+    type: "article",
+    image,
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt || post._updatedAt || post.publishedAt,
+    authors: post.author?.name ? [post.author.name] : undefined,
+    keywords: post.seo?.keywords,
+  });
+}
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post: Post | null = await client.fetch(postBySlugQuery, { slug });
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();
   }
 
   const readingTime = getReadingTime(post.body);
+  const mainImageUrl = post.mainImage
+    ? urlFor(post.mainImage.asset).width(1600).height(900).auto("format").fit("crop").url()
+    : undefined;
 
   return (
     <main className="blog-article-shell min-h-screen bg-[#050505] px-5 py-8 text-white md:px-8 md:py-12">
+      <JsonLd data={blogPostingSchema(post, slug, mainImageUrl)} />
       <div className="pointer-events-none fixed inset-0 z-[-1] bg-[linear-gradient(rgba(255,255,255,0.032)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.032)_1px,transparent_1px)] bg-[size:72px_72px]" />
 
       <div className="mx-auto max-w-7xl">
+        <Breadcrumbs
+          items={[
+            { name: "Blog", href: "/blog" },
+            { name: post.title, href: `/blog/${slug}` },
+          ]}
+          className="mb-8"
+        />
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <BlogBackButton />
           <ReadingModeToggle className="w-full justify-between md:w-auto" />
@@ -156,7 +211,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   {post.author.image && (
                     <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/15">
                       <Image
-                        src={urlFor(post.author.image).width(80).height(80).url()}
+                        src={urlFor(post.author.image).width(80).height(80).auto("format").fit("crop").url()}
                         alt={post.author.name}
                         fill
                         sizes="40px"
@@ -186,7 +241,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           {post.mainImage && (
             <div className="relative mb-12 aspect-[16/9] w-full overflow-hidden border border-white/10 bg-white/[0.04] md:mb-16">
               <Image
-                src={urlFor(post.mainImage.asset).width(1600).height(900).url()}
+                src={mainImageUrl || absoluteUrl("/logo.png")}
                 alt={post.mainImage.alt || post.title}
                 fill
                 sizes="(min-width: 1024px) 1024px, 100vw"

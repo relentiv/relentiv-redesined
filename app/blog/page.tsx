@@ -1,8 +1,11 @@
+import type { Metadata } from 'next'
 import { client } from '@/sanity/client'
 import { postsQuery, postsSearchQuery } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 import { Post } from '@/sanity/types'
 import { formatPostDate, getReadingTime } from '@/lib/blog'
+import { createPageMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowUpRight, BookOpen, Search, X } from 'lucide-react'
@@ -24,6 +27,14 @@ function getSanitySearchTerm(query: string): string {
     .join(' ')
 }
 
+export const metadata: Metadata = createPageMetadata({
+  title: 'Blog',
+  description:
+    'Read Relentiv notes on product engineering, web applications, mobile apps, AI systems, design, and interactive technology.',
+  path: '/blog',
+  keywords: ['Relentiv blog', 'product engineering blog', 'AI product engineering'],
+})
+
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const query = getSearchValue((await searchParams).q)
   const posts: Post[] = query
@@ -38,6 +49,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <div className="pointer-events-none fixed inset-0 z-[-1] bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
 
       <div className="mx-auto max-w-7xl">
+        <Breadcrumbs items={[{ name: 'Blog', href: '/blog' }]} className="mb-10" />
         <header className="mb-8 border-b border-white/10 pb-7 md:mb-10 md:pb-9">
           <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
@@ -103,7 +115,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                   {post.mainImage && (
                     <div className="relative h-40 w-full overflow-hidden bg-white/[0.04]">
                       <Image
-                        src={urlFor(post.mainImage.asset).width(760).height(480).url()}
+                        src={urlFor(post.mainImage.asset).width(760).height(480).auto('format').fit('crop').url()}
                         alt={post.mainImage.alt || post.title}
                         fill
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"

@@ -3,6 +3,10 @@ import { Geist, Geist_Mono, Doto } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import Aurora from "@/components/Aurora";
+import { Analytics } from "@/components/Analytics";
+import { JsonLd } from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { createPageMetadata, siteConfig, siteUrl } from "@/lib/seo";
 
 type BackgroundMode = "im" | "rb" | "gr";
 
@@ -17,21 +21,36 @@ const STATIC_BACKGROUND_IMAGE_URL =
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const doto = Doto({
   variable: "--font-doto",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Relentiv | Engineering the Future of Tech",
-  description: "A Bengaluru-based technology studio specializing in web, mobile, game engineering, and AI-integrated systems for enterprise clients.",
+  ...createPageMetadata({
+    title: "Relentiv",
+    description: siteConfig.description,
+    path: "/",
+  }),
+  metadataBase: siteUrl,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "Technology",
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
   icons: {
     icon: "/logo.png",
   },
@@ -75,6 +94,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${doto.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col pt-24 md:pt-28 relative bg-black">
+        <JsonLd data={organizationSchema()} />
+        <JsonLd data={websiteSchema()} />
         <div className="fixed inset-0 z-0">
           <SiteBackground />
         </div>
@@ -82,6 +103,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   );

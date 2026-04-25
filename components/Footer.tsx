@@ -1,4 +1,7 @@
+"use client";
+
 import Link from 'next/link';
+import Image from 'next/image';
 import { getCalApi } from "@calcom/embed-react";
 
 async function openCalPopup() {
@@ -13,11 +16,12 @@ export function Footer() {
     <footer className="relative w-full text-white bg-black">
       {/* Background Image Setup */}
       <div className="absolute inset-0 z-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="https://cdn.pixabay.com/photo/2015/05/16/12/03/escalator-769790_1280.jpg"
           alt="Elevator Background"
-          className="w-full h-full object-cover opacity-60"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-60"
         />
         {/* Gradient overlays to ensure text readability & blending */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
@@ -56,6 +60,9 @@ export function Footer() {
                 <h3 className="text-white/60 text-sm font-medium mb-5">Company</h3>
                 <ul className="space-y-3.5 text-sm font-medium">
                   <li><Link href="/about" className="text-white hover:text-white/70 transition-colors">About</Link></li>
+                  <li><Link href="/services" className="text-white hover:text-white/70 transition-colors">Services</Link></li>
+                  <li><Link href="/work" className="text-white hover:text-white/70 transition-colors">Work</Link></li>
+                  <li><Link href="/blog" className="text-white hover:text-white/70 transition-colors">Blog</Link></li>
                 </ul>
               </div>
 
@@ -79,6 +86,7 @@ export function Footer() {
               <address className="not-italic">
                 <h3 className="text-white/60 text-sm font-medium mb-5">Contact & Location</h3>
                 <ul className="space-y-3.5 text-sm font-medium">
+                  <li><Link href="/contact" className="text-white hover:text-white/70 transition-colors">Contact</Link></li>
                   <li><a href="mailto:contact@relentiv.com" className="text-white hover:text-white/70 transition-colors">contact@relentiv.com</a></li>
                   <li className="text-white/70 mt-2">Bengaluru, India</li>
                 </ul>
@@ -89,9 +97,9 @@ export function Footer() {
           {/* Huge cut-off logo text at the bottom */}
           <div className="absolute left-0 right-0 bottom-0 pointer-events-none flex justify-center translate-y-[33%] z-0 select-none">
              {/* Use width mapping and negative tracking for tight spacing */}
-             <h1 className="text-[15vw] md:text-[20vw] font-bold leading-[0.75] tracking-tighter text-white uppercase opacity-95 text-center whitespace-nowrap">
+             <div aria-hidden="true" className="text-[15vw] md:text-[20vw] font-bold leading-[0.75] tracking-tighter text-white uppercase opacity-95 text-center whitespace-nowrap">
                 RELENTIV
-             </h1>
+             </div>
           </div>
         </div>
       </div>

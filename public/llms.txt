@@ -1,0 +1,24 @@
+# Relentiv
+
+Relentiv is a Bengaluru-based product engineering studio building web applications, mobile apps, AI-integrated products, game engineering systems, and UI/UX design systems.
+
+Website: https://relentiv.com
+Contact: contact@relentiv.com
+
+Important pages:
+- https://relentiv.com/
+- https://relentiv.com/services
+- https://relentiv.com/work
+- https://relentiv.com/about
+- https://relentiv.com/blog
+- https://relentiv.com/contact
+
+Core services:
+- Web application development
+- Mobile app development
+- AI product engineering
+- Game engineering
+- UI/UX design
+
+Founder and CEO: Utkarsh
+

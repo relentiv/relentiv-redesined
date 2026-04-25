@@ -1,36 +1,31 @@
-"use client"
-import { useEffect } from "react";
-import { Hero } from "@/components/Hero";
-import HowWeWork from "@/components/HowWeWork";
-import { TechStack } from "@/components/TechStack";
-import { WhatWeDo } from "@/components/WhatWeDo";
-import { Footer } from "@/components/Footer";
+import type { Metadata } from "next";
+import { HomeClient } from "@/components/HomeClient";
+import { JsonLd } from "@/components/JsonLd";
+import { createPageMetadata } from "@/lib/seo";
+import { faqSchema, homeFaqs, localBusinessSchema } from "@/lib/schema";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Relentiv",
+  description:
+    "Relentiv is a Bengaluru product engineering studio for web applications, mobile apps, AI-integrated products, game engineering, and UI/UX systems.",
+  path: "/",
+  keywords: [
+    "Relentiv",
+    "product engineering studio",
+    "web application development",
+    "mobile app development",
+    "AI product engineering",
+    "Bengaluru technology studio",
+  ],
+});
 
 export default function Home() {
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const scrollId = searchParams.get('scrollTo');
-    if (scrollId) {
-      const timer = setTimeout(() => {
-        const el = document.getElementById(scrollId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        const url = new URL(window.location.href);
-        url.searchParams.delete('scrollTo');
-        window.history.replaceState({}, '', url);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   return (
-    <main className="flex-1 flex flex-col">
-      <Hero />
-      <WhatWeDo/>
-      <TechStack/>
-      <HowWeWork/>
-      <Footer />
-    </main>
+    <>
+      <JsonLd data={localBusinessSchema()} />
+      <JsonLd data={faqSchema(homeFaqs)} />
+      <HomeClient />
+    </>
   );
 }
+

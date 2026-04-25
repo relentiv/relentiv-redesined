@@ -29,11 +29,13 @@ export interface Category {
 
 export interface Post {
   _id: string
+  _updatedAt?: string
   title: string
   slug: {
     current: string
   }
   publishedAt: string
+  updatedAt?: string
   excerpt?: string
   mainImage?: SanityImage
   body: PortableTextBlock[]
@@ -42,5 +44,6 @@ export interface Post {
   seo?: {
     metaTitle?: string
     metaDescription?: string
+    keywords?: string[]
   }
 }

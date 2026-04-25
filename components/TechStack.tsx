@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import PixelBlast from "./PixelBlast";
 
 const stackGroups = [
@@ -78,12 +79,12 @@ function LogoSlot({ name, image }: { name: string; image?: string }) {
       title={name}
     >
       {image ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={image}
           alt={`${name} logo`}
+          width={120}
+          height={48}
           className="max-h-7 max-w-full object-contain opacity-75 transition duration-300 group-hover:opacity-100"
-          loading="lazy"
         />
       ) : (
         <span className="font-mono text-[10px] tracking-widest text-white/20 transition duration-300 group-hover:text-white/50">

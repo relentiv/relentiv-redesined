@@ -72,6 +72,12 @@ export const post = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'updatedAt',
+      title: 'Updated date',
+      type: 'datetime',
+      description: 'Optional. Use this when an article has been substantially updated after publishing.',
+    }),
+    defineField({
       name: 'excerpt',
       title: 'Short summary',
       type: 'text',
@@ -125,6 +131,17 @@ export const post = defineType({
           description: 'Optional search result description. If empty, the short summary is used.',
           placeholder: 'Example: Learn how founders can choose a practical tech stack for fast, reliable product delivery.',
           rows: 3,
+          validation: (Rule) => Rule.max(160).warning('Keep this near a search-result snippet length.'),
+        },
+        {
+          name: 'keywords',
+          type: 'array',
+          title: 'Keyword tags',
+          description: 'Optional keyword phrases for metadata and AI/search context.',
+          of: [{ type: 'string' }],
+          options: {
+            layout: 'tags',
+          },
         },
       ],
     }),

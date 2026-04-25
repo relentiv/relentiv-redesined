@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface GridItem {
@@ -128,14 +129,15 @@ export function ImageGrid() {
                 )}
               >
                 {item.imageUrl ? (
-                  // Direct Image URL Render (External, PNG, JPG, WebP)
-                  // Using standard img tag to prevent Next.js unconfigured remote domain errors
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img 
-                    src={item.imageUrl} 
-                    alt={item.name} 
-                    className="w-full h-full object-cover rounded-md pointer-events-none"
-                  />
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.name}
+                      fill
+                      sizes="150px"
+                      className="rounded-md object-cover pointer-events-none"
+                    />
+                  </div>
                 ) : item.type === "logo" && item.svg ? (
                   // Logo Render
                   <div 

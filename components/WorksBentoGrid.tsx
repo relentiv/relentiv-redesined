@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -45,12 +46,12 @@ export function WorksBentoGrid() {
                  spanClasses
               )}
             >
-               {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img 
-                 src={item.imageUrl} 
+               <Image
+                 src={item.imageUrl}
                  alt={`Work excerpt ${item.id}`}
-                 loading="lazy"
-                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
+                 fill
+                 sizes="(min-width: 1280px) 16vw, (min-width: 768px) 25vw, 50vw"
+                 className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
                />
                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700" />
             </motion.div>
