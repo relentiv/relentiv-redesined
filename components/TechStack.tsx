@@ -31,38 +31,14 @@ const stackGroups = [
 ];
 
 const featuredTools = [
-  {
-    name: "Design Systems",
-    image: "/assets/logos/design-systems.png",
-  },
-  {
-    name: "aws",
-    image: "/assets/logos/aws.png",
-  },
-  {
-    name: "Webflow",
-    image: "/assets/logos/webflow.png",
-  },
-  {
-    name: "figma",
-    image: "/assets/logos/figma.png",
-  },
-  {
-    name: "Google Cloud",
-    image: "/assets/logos/google-cloud.png",
-  },
-  {
-    name: "Cloudflare",
-    image: "/assets/logos/cloudflare.png",
-  },
-  {
-    name: "GitHub",
-    image: "/assets/logos/github.png",
-  },
-  {
-    name: "Kubernetes",
-    image: "/assets/logos/kubernetes.png",
-  },
+  { name: "Design Systems", image: "/assets/logos/design-systems.png" },
+  { name: "aws", image: "/assets/logos/aws.png" },
+  { name: "Webflow", image: "/assets/logos/webflow.png" },
+  { name: "figma", image: "/assets/logos/figma.png" },
+  { name: "Google Cloud", image: "/assets/logos/google-cloud.png" },
+  { name: "Cloudflare", image: "/assets/logos/cloudflare.png" },
+  { name: "GitHub", image: "/assets/logos/github.png" },
+  { name: "Kubernetes", image: "/assets/logos/kubernetes.png" },
 ];
 
 function LogoSlot({ name, image }: { name: string; image?: string }) {
@@ -84,10 +60,10 @@ function LogoSlot({ name, image }: { name: string; image?: string }) {
           alt={`${name} logo`}
           width={120}
           height={48}
-          className="max-h-7 max-w-full object-contain opacity-75 transition duration-300 group-hover:opacity-100"
+          className="max-h-8 max-w-full object-contain opacity-70 transition duration-300 group-hover:opacity-100"
         />
       ) : (
-        <span className="font-mono text-[10px] tracking-widest text-white/20 transition duration-300 group-hover:text-white/50">
+        <span className="font-mono text-[11px] tracking-widest text-white/25 transition duration-300 group-hover:text-white/55">
           {initials}
         </span>
       )}
@@ -101,6 +77,7 @@ export function TechStack() {
       aria-labelledby="tech-stack-title"
       className="relative overflow-hidden border-t border-white/10 bg-black py-16 text-white md:py-28"
     >
+      {/* Background effects — unchanged */}
       <div className="absolute -left-24 -top-20 z-0 h-[26rem] w-[36rem] opacity-52 md:-left-12 md:-top-16 md:h-[34rem] md:w-[48rem]">
         <PixelBlast
           className=""
@@ -137,48 +114,54 @@ export function TechStack() {
       <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_22%_8%,transparent_0%,rgba(0,0,0,0.68)_34%,#000_100%)]" />
 
       <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 md:px-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+
+        {/* Left column */}
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-white/45">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-white/50">
             Technology
           </p>
           <h2
             id="tech-stack-title"
-            className="max-w-xl text-4xl font-medium leading-[1.02] text-white md:text-6xl"
+            className="max-w-xl text-4xl font-semibold leading-[1.05] text-white md:text-5xl lg:text-6xl"
           >
             Tools we trust when polish matters.
           </h2>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-white/58 md:text-lg">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-white/68 md:text-lg">
             A focused stack for fast interfaces, reliable systems, and AI
             features that survive production.
           </p>
 
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4">
+          {/* Logo grid — desktop only */}
+          <div className="mt-10 hidden md:grid md:grid-cols-4">
             {featuredTools.map((tool) => (
               <LogoSlot key={tool.name} name={tool.name} image={tool.image} />
             ))}
           </div>
         </div>
 
+        {/* Right column — stack groups */}
         <div className="self-end border-y border-white/10">
           {stackGroups.map((group, index) => (
             <div
               key={group.label}
-              className="grid gap-4 border-b border-white/10 py-5 last:border-b-0 md:grid-cols-[7rem_1fr] md:items-center"
+              className="border-b border-white/10 py-5 last:border-b-0 md:grid md:grid-cols-[7rem_1fr] md:items-center md:gap-4"
             >
-              <div className="flex items-center justify-between md:block">
-                <span className="font-mono text-[11px] text-white/30">
+              {/* Label row */}
+              <div className="mb-3 flex items-center gap-3 md:mb-0 md:block">
+                <span className="font-mono text-[11px] text-white/35 md:block">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="text-sm font-medium text-white/82 md:mt-2 md:text-base">
+                <h3 className="text-sm font-semibold text-white/90 md:mt-2 md:text-base">
                   {group.label}
                 </h3>
               </div>
 
+              {/* Tags */}
               <ul className="flex flex-wrap gap-2">
                 {group.tools.map((tool) => (
                   <li
                     key={tool}
-                    className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-white/52 transition-colors duration-300 hover:border-white/22 hover:text-white/80"
+                    className="rounded-full border border-white/12 px-3 py-1.5 text-xs font-medium text-white/65 transition-colors duration-300 hover:border-white/28 hover:text-white/90"
                   >
                     {tool}
                   </li>
@@ -187,6 +170,7 @@ export function TechStack() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

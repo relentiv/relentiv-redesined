@@ -45,7 +45,7 @@ export function Footer() {
                   onClick={openCalPopup}
                   className="px-8 py-3 rounded-full border-2 border-dotted border-white/40 text-white/90 font-mono tracking-[0.2em] text-sm uppercase hover:bg-white hover:text-black hover:border-solid hover:border-white transition-all duration-300 ease-in-out"
                 >
-                  Start Project
+                  Book a Call
                 </button>
               </div>
               

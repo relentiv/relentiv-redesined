@@ -323,7 +323,7 @@ export function Hero() {
 
   return (
     <>
-      <section className="relative flex w-full items-start overflow-hidden pb-24 pt-6 md:min-h-[calc(100svh-7rem)] md:pb-14 md:pt-10 lg:pt-12">
+     <section className="relative flex w-full items-start overflow-hidden pb-24 pt-6 md:min-h-[calc(100svh-7rem)] md:pb-14 md:pt-10 lg:pt-12 before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r before:from-black/65 before:via-black/35 before:to-transparent before:pointer-events-none">
         <div className="relative mx-auto flex w-full max-w-[1600px] flex-col px-7 md:px-12">
           {/* Subtle structural wireframes */}
           <Crosshair className="-top-12 -left-12 hidden lg:flex" />
@@ -352,7 +352,7 @@ export function Hero() {
                 onClick={openCalPopup}
                 className="w-fit rounded-full border-2 border-dotted border-white/45 px-5 py-3 font-mono text-[11px] uppercase text-white/90 transition-all duration-300 ease-in-out hover:border-solid hover:border-white hover:bg-white hover:text-black md:px-7 md:py-3.5 md:text-xs"
               >
-                Start a Project
+                Book a Call
               </button>
 
               <a
@@ -366,7 +366,7 @@ export function Hero() {
             
           </div>
 
-          <div className="relative z-10 mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-y border-white/10 py-3 sm:mt-8 sm:grid-cols-4 sm:gap-2 md:mt-10 md:py-4">
+          <div className="relative z-10 mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-y border-white/15 bg-black/25 backdrop-blur-sm py-3 sm:mt-8 sm:grid-cols-4 sm:gap-2 md:mt-10 md:py-4">
             {capabilities.map((capability, index) => (
               <div
                 key={capability}
@@ -388,7 +388,7 @@ export function Hero() {
             {disciplines.map((discipline) => (
               <span
                 key={discipline}
-                className="rounded-full border border-white/10 bg-black/15 px-2 py-1 text-[9px] font-medium uppercase text-white/42 sm:px-2.5 sm:text-[10px] md:px-3 md:py-1.5 md:text-[11px]"
+                className="rounded-full border border-white/15 bg-black/38 px-2 py-1 text-[9px] font-medium uppercase text-white/55 sm:px-2.5 sm:text-[10px] md:px-3 md:py-1.5 md:text-[11px]"
               >
                 {discipline}
               </span>
@@ -396,11 +396,11 @@ export function Hero() {
           </div>
 
             <div className="w-full flex items-center justify-center">
-          <div className="mt-7 w-full max-w-xl border border-white/10 bg-black/18 p-2 backdrop-blur-md md:mt-9">
+          <div className="mt-7 w-full max-w-xl border border-white/15 bg-black/45 p-2 backdrop-blur-md md:mt-9">
               <button
                 type="button"
                 onClick={() => setBlogSearchOpen(true)}
-                className="group flex h-14 w-full items-center justify-between gap-4 bg-white/[0.035] px-4 text-left transition-colors hover:bg-white/[0.065]"
+               className="group flex h-14 w-full items-center justify-between gap-4 bg-white/[0.06] px-4 text-left transition-colors hover:bg-white/[0.10]"
               >
                 <span className="flex min-w-0 items-center gap-3">
                   <Search size={18} className="shrink-0 text-white/42 transition-colors group-hover:text-white/70" aria-hidden="true" />

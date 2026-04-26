@@ -270,7 +270,7 @@ export function Navbar() {
                 ctaBorder
               )}
             >
-              Start Project
+              Book a Call
             </button>
           </div>
 
@@ -355,7 +355,7 @@ export function Navbar() {
                 }}
                 className="w-full py-4 text-center block rounded-full border-2 border-dotted border-white/40 text-white font-mono tracking-[0.2em] text-sm uppercase hover:bg-white hover:text-black hover:border-solid hover:border-white transition-all duration-300 ease-in-out"
               >
-                Start Project
+                Book a Call
               </button>
             </motion.div>
           </motion.div>

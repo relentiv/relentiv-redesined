@@ -89,6 +89,19 @@ export const servicesFaqs: Question[] = [
   },
 ];
 
+export const aboutFaqs: Question[] = [
+  {
+    question: "Who is the founder of Relentiv?",
+    answer:
+      "Anishka Barman is the founder of Relentiv, a Bengaluru-based product engineering studio.",
+  },
+  {
+    question: "Where is Relentiv based?",
+    answer:
+      "Relentiv is based in Bengaluru, Karnataka, India.",
+  },
+];
+
 export function organizationSchema() {
   return {
     "@context": context,
@@ -100,6 +113,11 @@ export function organizationSchema() {
     logo: absoluteUrl(siteConfig.logo),
     email: siteConfig.email,
     sameAs: siteConfig.socialLinks,
+    founder: {
+      "@type": "Person",
+      "@id": absoluteUrl("/about#anishka-barman"),
+      name: "Anishka Barman",
+    },
     address: {
       "@type": "PostalAddress",
       ...siteConfig.address,
@@ -145,17 +163,63 @@ export function localBusinessSchema() {
   };
 }
 
+export function aboutPageSchema() {
+  return {
+    "@context": context,
+    "@type": "AboutPage",
+    "@id": absoluteUrl("/about#about-page"),
+    url: absoluteUrl("/about"),
+    name: "Founder of Relentiv: Anishka Barman",
+    headline: "Founder of Relentiv: Anishka Barman",
+    description:
+      "Anishka Barman is the founder of Relentiv, a Bengaluru-based product engineering studio building web, mobile, AI, game engineering, and UI/UX systems.",
+    isPartOf: {
+      "@id": absoluteUrl("/#website"),
+    },
+    publisher: {
+      "@id": absoluteUrl("/#organization"),
+    },
+    about: [
+      { "@id": absoluteUrl("/#organization") },
+      { "@id": absoluteUrl("/about#anishka-barman") },
+    ],
+    mainEntity: {
+      "@id": absoluteUrl("/about#anishka-barman"),
+    },
+    inLanguage: "en-IN",
+  };
+}
+
 export function personSchema() {
   return {
     "@context": context,
     "@type": "Person",
-    "@id": absoluteUrl("/about#utkarsh"),
-    name: "Utkarsh",
-    jobTitle: "Founder and CEO",
+    "@id": absoluteUrl("/about#anishka-barman"),
+    name: "Anishka Barman",
+    jobTitle: "Founder of Relentiv",
+    description:
+      "Anishka Barman is the founder of Relentiv, a Bengaluru-based product engineering studio.",
+    image:
+      "https://media.licdn.com/dms/image/v2/D5603AQFa0_aLA-We6w/profile-displayphoto-scale_200_200/B56Z2NM_nvIYAY-/0/1776190489486?e=1778716800&v=beta&t=mHPjyW3NZLj_CN3tK3L4Qlx50BJf0SzSDBOMqRElDlk",
     worksFor: {
       "@id": absoluteUrl("/#organization"),
     },
+    affiliation: {
+      "@id": absoluteUrl("/#organization"),
+    },
     url: absoluteUrl("/about"),
+    sameAs: ["https://www.linkedin.com/in/anishka-barman-6787103b9/"],
+    knowsAbout: [
+      "Growth",
+      "Partnerships",
+      "Product strategy",
+      "Digital product studios",
+      "Business operations",
+    ],
+    homeLocation: {
+      "@type": "Place",
+      name: "Bengaluru, Karnataka, India",
+    },
   };
 }
 

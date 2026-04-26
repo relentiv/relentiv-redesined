@@ -49,8 +49,8 @@ export function WhatWeDo() {
           spotlightOpacity={1}
           mixBlendMode="normal"
         />
-        <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_70%_50%,transparent_40%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_70%_50%,transparent_30%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />
       </div>
 
       {/* Foreground Content */}
@@ -81,7 +81,7 @@ export function WhatWeDo() {
           {services.map((service) => (
             <article
               key={service.num}
-              className="group relative p-5 md:p-10 bg-white/[0.09] hover:bg-white/[0.07] transition-colors duration-300 border border-transparent"
+              className="group relative p-5 md:p-10 bg-black/[0.42] backdrop-blur-md hover:bg-black/[0.52] transition-colors duration-300 border border-white/[0.12]"
             >
               {/* Number + Title row */}
               <div className="flex items-start gap-4 mb-4">
@@ -94,12 +94,12 @@ export function WhatWeDo() {
               </div>
 
               {/* Hook line — scannable, keyword-rich */}
-              <p className="text-sm font-semibold text-purple-200 tracking-wide mb-3 ml-0 sm:ml-8 drop-shadow-sm">
+              <p className="text-sm font-semibold text-violet-300 tracking-wide mb-3 ml-0 sm:ml-8 drop-shadow-sm">
                 {service.hook}
               </p>
 
               {/* Description */}
-              <p className="text-gray-200 font-medium leading-relaxed text-sm md:text-base ml-0 sm:ml-8">
+              <p className="text-slate-200 font-medium leading-relaxed text-sm md:text-base ml-0 sm:ml-8">
                 {service.description}
               </p>
             </article>

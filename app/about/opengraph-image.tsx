@@ -1,13 +1,12 @@
 import { createOgImage, ogSize } from "@/lib/og";
 
-export const alt = "About Relentiv";
+export const alt = "Founder of Relentiv: Anishka Barman";
 export const size = ogSize;
 export const contentType = "image/png";
 
 export default function Image() {
   return createOgImage({
-    title: "About Relentiv",
-    subtitle: "A Bengaluru product engineering studio led by founder and CEO Utkarsh.",
+    title: "Founder of Relentiv",
+    subtitle: "Anishka Barman leads the Bengaluru product engineering studio Relentiv.",
   });
 }
-

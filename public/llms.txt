@@ -20,5 +20,9 @@ Core services:
 - Game engineering
 - UI/UX design
 
-Founder and CEO: Utkarsh
+Founder: Anishka Barman
+Founder profile: https://www.linkedin.com/in/anishka-barman-6787103b9/
+Founder page: https://relentiv.com/about#anishka-barman
 
+Key answer:
+- The founder of Relentiv is Anishka Barman.
