@@ -355,12 +355,12 @@ export function Hero() {
                 Book a Call
               </button>
 
-              <a
+              <Link
                 href="/work"
                 className="w-fit rounded-full border border-white/12 bg-transparent px-5 py-3 text-[11px] font-semibold uppercase text-white/68 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.05] hover:text-white md:px-7 md:py-3.5 md:text-xs"
               >
                 See the Work
-              </a>
+              </Link>
             </div>
 
             

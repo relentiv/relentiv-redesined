@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarn Knowledge Service</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@6.5.1/dist/framer-motion.umd.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #060d2a;
+            --primary-container: #1c2340;
+            --secondary: #006e1d;
+            --on-surface: #131a36;
+            --on-surface-variant: #46464d;
+            --surface: #fbf8ff;
+            --surface-container-low: #f3f2ff;
+            --surface-container-lowest: #ffffff;
+            --outline-variant: #c6c5ce;
+            --background: #ffffff;
+            --foreground: #131a36;
+            --border: #ebebeb;
+            --ring: #b5b5b5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(198, 197, 206, 0.1);
+        }
+
+        .ghost-border {
+            border: 1px solid rgba(198, 197, 206, 0.2);
+        }
+
+        .dot-grid {
+            padding: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .dot-grid__wrap {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .dot-grid__canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#060d2a',
+                        'primary-container': '#1c2340',
+                        secondary: '#006e1d',
+                        'on-surface': '#131a36',
+                        'on-surface-variant': '#46464d',
+                        surface: '#fbf8ff',
+                        'surface-container-low': '#f3f2ff',
+                        'surface-container-lowest': '#ffffff',
+                        'outline-variant': '#c6c5ce',
+                        border: '#ebebeb',
+                    },
+                    fontFamily: {
+                        headline: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="root">
+        <div style="display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif;">
+            Loading application...
+        </div>
+    </div>
+
+    <script type="text/babel" data-presets="react">
+        console.log("React Script Starting...");
+
+        const { useState, useEffect, useRef, useCallback, useMemo } = React;
+        const { motion: m, AnimatePresence: AP } = window.Motion || {};
+        
+        // Fallbacks for motion components to prevent crashes if CDN fails
+        const motion = m || {
+            div: (props) => <div {...props}>{props.children}</div>,
+            section: (props) => <section {...props}>{props.children}</section>,
+            h1: (props) => <h1 {...props}>{props.children}</h1>,
+            p: (props) => <p {...props}>{props.children}</p>,
+            button: (props) => <button {...props}>{props.children}</button>,
+        };
+        const AnimatePresence = AP || (({children}) => <>{children}</>);
+        const gsap = window.gsap || { killTweensOf: () => {}, to: () => {} };
+
+        // Simpler SVG Icon implementation to avoid lucide global issues
+        const LucideIcon = ({ name, size = 24, className = "" }) => {
+            const icons = {
+                Menu: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>,
+                X: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>,
+                ChevronDown: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m6 9 6 6 6-6"/></svg>,
+                Calendar: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>,
+                GraduationCap: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21.42 10.92 12 15.508 2.58 10.92a.5.5 0 0 1 0-.84L12 5.5l9.42 4.58a.5.5 0 0 1 0 .84Z"/><path d="M7 13.5v3a5 5 0 0 0 10 0v-3"/></svg>,
+                Building2: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>,
+                Anchor: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 5V3"/><path d="M5 12H2"/><path d="M22 12h-3"/><path d="M12 22V12"/><path d="M12 22c5.523 0 10-4.477 10-10"/><path d="M12 22C6.477 22 2 17.523 2 12"/><circle cx="12" cy="5" r="2"/></svg>,
+                ArrowRight: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>,
+                Globe: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+                Rss: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+            };
+            return icons[name] || null;
+        };
+
+        // --- DotGrid Component ---
+        const throttle = (func, limit) => {
+            let lastCall = 0;
+            return function (...args) {
+                const now = performance.now();
+                if (now - lastCall >= limit) {
+                    lastCall = now;
+                    func.apply(this, args);
+                }
+            };
+        };
+
+        function hexToRgb(hex) {
+            const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+            if (!m) return { r: 0, g: 0, b: 0 };
+            return {
+                r: parseInt(m[1], 16),
+                g: parseInt(m[2], 16),
+                b: parseInt(m[3], 16)
+            };
+        }
+
+        const DotGrid = ({
+            dotSize = 16,
+            gap = 32,
+            baseColor = '#c2c2c2',
+            activeColor = '#000000',
+            proximity = 150,
+            speedTrigger = 10,
+            shockRadius = 250,
+            shockStrength = 5,
+            maxSpeed = 1000,
+            resistance = 750,
+            returnDuration = 1.5,
+            className = '',
+            style
+        }) => {
+            const wrapperRef = useRef(null);
+            const canvasRef = useRef(null);
+            const dotsRef = useRef([]);
+            const pointerRef = useRef({
+                x: 0, y: 0, vx: 0, vy: 0, speed: 0, lastTime: 0, lastX: 0, lastY: 0
+            });
+
+            const baseRgb = useMemo(() => hexToRgb(baseColor), [baseColor]);
+            const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
+
+            const circlePath = useMemo(() => {
+                const p = new Path2D();
+                p.arc(0, 0, dotSize / 2, 0, Math.PI * 2);
+                return p;
+            }, [dotSize]);
+
+            const buildGrid = useCallback(() => {
+                const wrap = wrapperRef.current;
+                const canvas = canvasRef.current;
+                if (!wrap || !canvas) return;
+
+                const { width, height } = wrap.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                canvas.style.width = `${width}px`;
+                canvas.style.height = `${height}px`;
+                const ctx = canvas.getContext('2d');
+                if (ctx) ctx.scale(dpr, dpr);
+
+                const cols = Math.floor((width + gap) / (dotSize + gap));
+                const rows = Math.floor((height + gap) / (dotSize + gap));
+                const cell = dotSize + gap;
+
+                const gridW = cell * cols - gap;
+                const gridH = cell * rows - gap;
+
+                const extraX = width - gridW;
+                const extraY = height - gridH;
+
+                const startX = extraX / 2 + dotSize / 2;
+                const startY = extraY / 2 + dotSize / 2;
+
+                const dots = [];
+                for (let y = 0; y < rows; y++) {
+                    for (let x = 0; x < cols; x++) {
+                        const cx = startX + x * cell;
+                        const cy = startY + y * cell;
+                        dots.push({ cx, cy, xOffset: 0, yOffset: 0, _inertiaApplied: false });
+                    }
+                }
+                dotsRef.current = dots;
+            }, [dotSize, gap]);
+
+            useEffect(() => {
+                let rafId;
+                const proxSq = proximity * proximity;
+
+                const draw = () => {
+                    const canvas = canvasRef.current;
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    if (!ctx) return;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    const { x: px, y: py } = pointerRef.current;
+
+                    for (const dot of dotsRef.current) {
+                        const ox = dot.cx + dot.xOffset;
+                        const oy = dot.cy + dot.yOffset;
+                        const dx = dot.cx - px;
+                        const dy = dot.cy - py;
+                        const dsq = dx * dx + dy * dy;
+
+                        let style = baseColor;
+                        if (dsq <= proxSq) {
+                            const dist = Math.sqrt(dsq);
+                            const t = 1 - dist / proximity;
+                            const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * t);
+                            const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * t);
+                            const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * t);
+                            style = `rgb(${r},${g},${b})`;
+                        }
+
+                        ctx.save();
+                        ctx.translate(ox, oy);
+                        ctx.fillStyle = style;
+                        ctx.fill(circlePath);
+                        ctx.restore();
+                    }
+
+                    rafId = requestAnimationFrame(draw);
+                };
+
+                draw();
+                return () => cancelAnimationFrame(rafId);
+            }, [proximity, baseColor, activeRgb, baseRgb, circlePath]);
+
+            useEffect(() => {
+                buildGrid();
+                const ro = new ResizeObserver(buildGrid);
+                wrapperRef.current && ro.observe(wrapperRef.current);
+                return () => ro.disconnect();
+            }, [buildGrid]);
+
+            useEffect(() => {
+                const onMove = (e) => {
+                    const now = performance.now();
+                    const pr = pointerRef.current;
+                    const dt = pr.lastTime ? now - pr.lastTime : 16;
+                    const dx = e.clientX - pr.lastX;
+                    const dy = e.clientY - pr.lastY;
+                    let vx = (dx / dt) * 1000;
+                    let vy = (dy / dt) * 1000;
+                    let speed = Math.hypot(vx, vy);
+                    if (speed > maxSpeed) {
+                        const scale = maxSpeed / speed;
+                        vx *= scale; vy *= scale; speed = maxSpeed;
+                    }
+                    pr.lastTime = now; pr.lastX = e.clientX; pr.lastY = e.clientY;
+                    pr.vx = vx; pr.vy = vy; pr.speed = speed;
+
+                    if (!canvasRef.current) return;
+                    const rect = canvasRef.current.getBoundingClientRect();
+                    pr.x = e.clientX - rect.left;
+                    pr.y = e.clientY - rect.top;
+
+                    for (const dot of dotsRef.current) {
+                        const dist = Math.hypot(dot.cx - pr.x, dot.cy - pr.y);
+                        if (speed > speedTrigger && dist < proximity && !dot._inertiaApplied) {
+                            dot._inertiaApplied = true;
+                            gsap.killTweensOf(dot);
+                            const pushX = (dot.cx - pr.x) * 0.5 + vx * 0.005;
+                            const pushY = (dot.cy - pr.y) * 0.5 + vy * 0.005;
+                            gsap.to(dot, {
+                                xOffset: pushX,
+                                yOffset: pushY,
+                                duration: 0.3,
+                                onComplete: () => {
+                                    gsap.to(dot, {
+                                        xOffset: 0,
+                                        yOffset: 0,
+                                        duration: returnDuration,
+                                        ease: 'elastic.out(1,0.75)'
+                                    });
+                                    dot._inertiaApplied = false;
+                                }
+                            });
+                        }
+                    }
+                };
+
+                const onClick = (e) => {
+                    if (!canvasRef.current) return;
+                    const rect = canvasRef.current.getBoundingClientRect();
+                    const cx = e.clientX - rect.left;
+                    const cy = e.clientY - rect.top;
+                    for (const dot of dotsRef.current) {
+                        const dist = Math.hypot(dot.cx - cx, dot.cy - cy);
+                        if (dist < shockRadius && !dot._inertiaApplied) {
+                            dot._inertiaApplied = true;
+                            gsap.killTweensOf(dot);
+                            const falloff = Math.max(0, 1 - dist / shockRadius);
+                            const pushX = (dot.cx - cx) * shockStrength * falloff;
+                            const pushY = (dot.cy - cy) * shockStrength * falloff;
+                            gsap.to(dot, {
+                                xOffset: pushX,
+                                yOffset: pushY,
+                                duration: 0.3,
+                                onComplete: () => {
+                                    gsap.to(dot, {
+                                        xOffset: 0,
+                                        yOffset: 0,
+                                        duration: returnDuration,
+                                        ease: 'elastic.out(1,0.75)'
+                                    });
+                                    dot._inertiaApplied = false;
+                                }
+                            });
+                        }
+                    }
+                };
+
+                const throttledMove = throttle(onMove, 50);
+                window.addEventListener('mousemove', throttledMove, { passive: true });
+                window.addEventListener('click', onClick);
+
+                return () => {
+                    window.removeEventListener('mousemove', throttledMove);
+                    window.removeEventListener('click', onClick);
+                };
+            }, [maxSpeed, speedTrigger, proximity, resistance, returnDuration, shockRadius, shockStrength]);
+
+            return (
+                <section className={`dot-grid ${className}`} style={style}>
+                    <div ref={wrapperRef} className="dot-grid__wrap">
+                        <canvas ref={canvasRef} className="dot-grid__canvas" />
+                    </div>
+                </section>
+            );
+        };
+
+        // --- Navbar Component ---
+        const Navbar = () => {
+            const [isOpen, setIsOpen] = useState(false);
+            const navLinks = [
+                { name: "Home", href: "#", active: true },
+                { name: "About", href: "#" },
+                { 
+                    name: "Service", 
+                    href: "#",
+                    subLinks: [
+                        { name: "FaroPort", href: "https://faroport.com" },
+                    ]
+                },
+                { name: "News & Updates", href: "#" },
+                { name: "Events", href: "#" },
+                { name: "Contact", href: "#" },
+            ];
+
+            return (
+                <nav className="fixed top-0 w-full z-50 glass-nav transition-colors duration-500">
+                    <div className="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto">
+                        <div className="text-xl md:text-2xl font-black tracking-tighter text-primary uppercase font-headline">
+                            Tarn Knowledge Service
+                        </div>
+
+                        <div className="hidden lg:flex items-center gap-8">
+                            {navLinks.map((link) => (
+                                <div key={link.name} className="relative group">
+                                    <a
+                                        href={link.href}
+                                        className={`flex items-center gap-1 font-headline font-bold tracking-tight text-sm transition-colors duration-300 ${
+                                            link.active
+                                                ? "text-primary border-b-2 border-secondary pb-1"
+                                                : "text-on-surface-variant hover:text-secondary"
+                                        }`}
+                                    >
+                                        {link.name}
+                                        {link.subLinks && <LucideIcon name="ChevronDown" size={14} className="group-hover:rotate-180 transition-transform duration-300" />}
+                                    </a>
+
+                                    {link.subLinks && (
+                                        <div className="absolute top-full left-0 pt-4 hidden group-hover:block w-48">
+                                            <div className="bg-white border border-outline-variant/10 rounded-xl shadow-xl overflow-hidden py-2">
+                                                {link.subLinks.map((sub) => (
+                                                    <a
+                                                        key={sub.name}
+                                                        href={sub.href}
+                                                        className="block px-6 py-2.5 text-sm font-headline font-medium text-on-surface-variant hover:bg-slate-50 hover:text-primary transition-colors"
+                                                    >
+                                                        {sub.name}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="flex items-center gap-4">
+                            <button className="hidden sm:block bg-primary-container text-white rounded-lg px-6 py-2.5 font-headline font-bold tracking-tight hover:opacity-90 transition-all active:scale-95">
+                                Get Started
+                            </button>
+                            
+                            <button 
+                                className="lg:hidden p-2 text-primary"
+                                onClick={() => setIsOpen(!isOpen)}
+                            >
+                                {isOpen ? <LucideIcon name="X" size={24} /> : <LucideIcon name="Menu" size={24} />}
+                            </button>
+                        </div>
+                    </div>
+
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.div 
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                className="lg:hidden bg-white border-b border-outline-variant/20 px-6 py-8 flex flex-col gap-6"
+                            >
+                                {navLinks.map((link) => (
+                                    <div key={link.name} className="flex flex-col gap-4">
+                                        <div 
+                                            className="flex items-center justify-between font-headline font-bold text-lg text-primary"
+                                            onClick={() => !link.subLinks && setIsOpen(false)}
+                                        >
+                                            {link.subLinks ? (
+                                                <span className="cursor-default">{link.name}</span>
+                                            ) : (
+                                                <a href={link.href}>{link.name}</a>
+                                            )}
+                                            {link.subLinks && <LucideIcon name="ChevronDown" size={18} />}
+                                        </div>
+                                        
+                                        {link.subLinks && (
+                                            <div className="flex flex-col gap-3 pl-4 border-l-2 border-outline-variant/10">
+                                                {link.subLinks.map((sub) => (
+                                                    <a
+                                                        key={sub.name}
+                                                        href={sub.href}
+                                                        className="font-headline font-bold text-base text-on-surface-variant"
+                                                        onClick={() => setIsOpen(false)}
+                                                    >
+                                                        {sub.name}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                                <button className="bg-primary-container text-white rounded-lg px-6 py-3 font-headline font-bold tracking-tight w-full">
+                                    Get Started
+                                </button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </nav>
+            );
+        };
+
+        // --- Hero Component ---
+        const Hero = () => {
+            return (
+                <section className="relative overflow-hidden min-h-[80vh] flex items-center px-6 md:px-8 pt-20 bg-background text-foreground transition-colors duration-500">
+                    <div className="absolute inset-0 z-0 opacity-40">
+                        <DotGrid
+                            dotSize={4}
+                            gap={22}
+                            baseColor="#c2c2c2"
+                            activeColor="#000000"
+                            proximity={60}
+                            speedTrigger={10}
+                            shockRadius={50}
+                            shockStrength={1}
+                            maxSpeed={1000}
+                            resistance={100}
+                            returnDuration={0.3}
+                        />
+                    </div>
+
+                    <div className="max-w-7xl mx-auto w-full text-center relative z-10 pointer-events-none">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="max-w-4xl mx-auto flex flex-col items-center pointer-events-auto"
+                        >
+                            <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-primary mb-8 transition-colors">
+                                Empowering Growth Through Knowledge
+                            </h1>
+                            
+                            <p className="text-xl md:text-2xl lg:text-3xl font-body text-on-surface-variant font-light mb-8 max-w-2xl leading-relaxed transition-colors">
+                                Unlock the power of information with our curated insights and professional services.
+                            </p>
+                            
+                            <p className="text-base md:text-lg text-on-surface-variant/80 max-w-xl mb-12 leading-relaxed transition-colors">
+                                We help individuals, teams, and organizations navigate the complexities of modern knowledge landscapes through intentional strategy and archival precision.
+                            </p>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        // --- FaroPortSection Component ---
+        const FaroPortSection = () => {
+            return (
+                <section className="bg-surface-container-low py-24 md:py-32 px-6 md:px-8 transition-colors duration-500">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="bg-surface-container-lowest rounded-3xl p-8 md:p-16 lg:p-20 overflow-hidden relative shadow-[0_20px_40px_rgba(0,0,0,0.04)] text-center transition-colors duration-500"
+                        >
+                            <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+                                <div className="flex flex-col items-center gap-4 mb-8">
+                                    <div className="bg-primary/5 p-3 rounded-2xl">
+                                        <LucideIcon name="Anchor" className="text-primary" size={40} />
+                                    </div>
+                                    <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-primary uppercase leading-tight">
+                                        Introducing FAROPORT
+                                    </h2>
+                                </div>
+                                
+                                <p className="text-xl md:text-2xl text-on-surface-variant leading-relaxed mb-12 font-light">
+                                    FaroPort is our premier gateway designed to streamline your digital asset management and knowledge navigation. A seamless bridge between raw data and actionable wisdom.
+                                </p>
+                                
+                                <a 
+                                    className="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg group transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20" 
+                                    href="https://faroport.com"
+                                >
+                                    Discover Faroport.com
+                                    <LucideIcon name="ArrowRight" className="group-hover:translate-x-1 transition-transform" size={20} />
+                                </a>
+                            </div>
+
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-[0.03]">
+                                <LucideIcon name="Anchor" size={400} className="text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        // --- PathwaysSection Component ---
+        const PathwaysSection = () => {
+            const pathways = [
+                {
+                    title: "Events",
+                    description: "Join our curated series of seminars, webinars, and networking events designed to keep you at the forefront of industry trends and knowledge curation.",
+                    icon: "Calendar",
+                    buttonText: "Browse Events",
+                    highlight: true
+                },
+                {
+                    title: "Students Section",
+                    description: "Specialized resources and mentorship opportunities for the next generation of knowledge professionals and scholarly curators.",
+                    icon: "GraduationCap",
+                    buttonText: "Student Portal",
+                    highlight: false
+                },
+                {
+                    title: "Corporate Section",
+                    description: "Enterprise-grade knowledge infrastructure, training, and strategic consulting to empower your organization's intellectual capital.",
+                    icon: "Building2",
+                    buttonText: "Corporate Solutions",
+                    highlight: false
+                }
+            ];
+
+            return (
+                <section className="py-24 md:py-32 px-6 md:px-8 bg-background transition-colors duration-500">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-16 md:mb-20">
+                            <h2 className="font-headline text-4xl md:text-5xl font-black tracking-tight text-primary mb-4 transition-colors">
+                                Dedicated Pathways
+                            </h2>
+                            <div className="w-24 h-1.5 bg-secondary transition-colors"></div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {pathways.map((path, index) => (
+                                <motion.div
+                                    key={path.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className={`flex flex-col bg-surface-container-lowest p-8 md:p-10 rounded-xl hover:translate-y-[-8px] transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.02)] ${
+                                        path.highlight ? "border-t-4 border-secondary" : "border-t-4 border-transparent"
+                                    }`}
+                                >
+                                    <div className="mb-8 p-3 bg-primary/5 w-fit rounded-lg">
+                                        <LucideIcon name={path.icon} className="text-primary" size={32} />
+                                    </div>
+                                    
+                                    <h3 className="font-headline text-2xl font-black tracking-tight text-primary mb-4">
+                                        {path.title}
+                                    </h3>
+                                    
+                                    <p className="text-on-surface-variant mb-10 flex-grow leading-relaxed">
+                                        {path.description}
+                                    </p>
+                                    
+                                    <button className="ghost-border text-primary px-6 py-3 rounded-md font-bold tracking-tight hover:bg-primary hover:text-white transition-all w-full active:scale-95">
+                                        {path.buttonText}
+                                    </button>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // --- Footer Component ---
+        const Footer = () => {
+            return (
+                <footer className="bg-surface w-full py-12 md:py-16 px-6 md:px-8 border-t border-outline-variant/10 transition-colors duration-500">
+                    <div className="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-8">
+                        <div className="flex flex-col gap-2 text-center md:text-left">
+                            <span className="font-headline font-black text-primary text-xl uppercase tracking-tighter">
+                                Tarn Knowledge Service
+                            </span>
+                            <p className="font-body text-sm tracking-wide text-on-surface-variant/70">
+                                © 2026 Tarn Knowledge Service. Curating Excellence.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+                            {["Privacy Policy", "Terms of Service", "Contact Us", "Resources"].map((item) => (
+                                <a 
+                                    key={item}
+                                    className="text-on-surface-variant hover:text-secondary font-body text-sm transition-colors" 
+                                    href="#"
+                                >
+                                    {item}
+                                </a>
+                            ))}
+                        </div>
+
+                        <div className="flex gap-6">
+                            <button className="text-on-surface-variant hover:text-secondary transition-colors">
+                                <LucideIcon name="Globe" size={20} />
+                            </button>
+                            <button className="text-on-surface-variant hover:text-secondary transition-colors">
+                                <LucideIcon name="Rss" size={20} />
+                            </button>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        // --- Main App Component ---
+        const App = () => {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="flex-grow">
+                        <Hero />
+                        <FaroPortSection />
+                        <PathwaysSection />
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
