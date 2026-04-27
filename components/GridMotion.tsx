@@ -3,9 +3,16 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './GridMotion.css';
+import Link from 'next/link';
+
+interface GridItem {
+  imageUrl?: string;
+  slug?: string;
+  content?: string | React.ReactNode;
+}
 
 interface GridMotionProps {
-  items?: (string | React.ReactNode)[];
+  items?: (string | GridItem | React.ReactNode)[];
   gradientColor?: string;
 }
 
@@ -17,10 +24,10 @@ const GridMotion: React.FC<GridMotionProps> = ({ items = [], gradientColor = 'bl
 
   // The component grid takes 4 rows of 7 items (28 items total)
   const totalItems = 28;
-  const defaultItems = Array.from({ length: totalItems }, (_, index) => `Item ${index + 1}`);
+  const defaultItems = Array.from({ length: totalItems }, (_, index) => ({ content: `Item ${index + 1}` }));
   
   // Pad items array if it's less than 28 items so it always visually fills the grid
-  let combinedItems = items;
+  let combinedItems: (string | GridItem | React.ReactNode)[] = items;
   if (combinedItems.length > 0 && combinedItems.length < totalItems) {
     // Loop the items until we reach totalItems to beautifully fill out the grid!
     while (combinedItems.length < totalItems) {
@@ -80,21 +87,36 @@ const GridMotion: React.FC<GridMotionProps> = ({ items = [], gradientColor = 'bl
           {[...Array(4)].map((_, rowIndex) => (
             <div key={rowIndex} className="row" ref={el => {rowRefs.current[rowIndex] = el;}}>
               {[...Array(7)].map((_, itemIndex) => {
-                const content = combinedItems[rowIndex * 7 + itemIndex];
+                const item = combinedItems[rowIndex * 7 + itemIndex];
+                const isObject = typeof item === 'object' && item !== null && !Array.isArray(item) && !('$$typeof' in (item as Record<string, unknown>));
+                const slug = isObject ? (item as GridItem).slug : null;
+                const imageUrl = isObject ? (item as GridItem).imageUrl : (typeof item === 'string' && item.startsWith('http') ? item : null);
+                const content = isObject ? (item as GridItem).content : (imageUrl ? null : item as React.ReactNode);
+
+                const RenderItem = () => (
+                  <div className="row__item-inner" style={{ backgroundColor: '#111' }}>
+                    {imageUrl ? (
+                      <div
+                        className="row__item-img"
+                        style={{
+                          backgroundImage: `url(${imageUrl})`
+                        }}
+                      ></div>
+                    ) : (
+                      <div className="row__item-content">{content}</div>
+                    )}
+                  </div>
+                );
+
                 return (
                   <div key={itemIndex} className="row__item">
-                    <div className="row__item-inner" style={{ backgroundColor: '#111' }}>
-                      {typeof content === 'string' && content.startsWith('http') ? (
-                        <div
-                          className="row__item-img"
-                          style={{
-                            backgroundImage: `url(${content})`
-                          }}
-                        ></div>
-                      ) : (
-                        <div className="row__item-content">{content}</div>
-                      )}
-                    </div>
+                    {slug ? (
+                      <Link href={`/work/${slug}`} className="block w-full h-full cursor-pointer">
+                        <RenderItem />
+                      </Link>
+                    ) : (
+                      <RenderItem />
+                    )}
                   </div>
                 );
               })}

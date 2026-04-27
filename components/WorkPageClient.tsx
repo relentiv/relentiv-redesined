@@ -4,44 +4,50 @@ import { GridBackground } from "@/components/GridBackground";
 import GridMotion from "@/components/GridMotion";
 import { BENTO_ITEMS } from "@/components/WorksBentoGrid";
 import { Footer } from "@/components/Footer";
+import Link from "next/link";
+import { PROJECTS } from "@/lib/projects";
 
 function WorkListItem({
+  slug,
   title,
   description,
   tags,
   year,
 }: {
+  slug: string;
   title: string;
   description: string;
   tags: string[];
   year: string;
 }) {
   return (
-    <div className="group cursor-pointer flex flex-col md:flex-row md:items-center justify-between border-t border-white/10 py-8 md:py-12 transition-all hover:border-white/30">
-      <div className="flex flex-col gap-2 md:w-5/12">
-        <h3 className="text-2xl md:text-3xl font-semibold text-white tracking-tight group-hover:text-blue-400 transition-colors duration-500">
-          {title}
-        </h3>
-        <p className="text-white/50 mt-1 text-lg leading-relaxed font-light">
-          {description}
-        </p>
-      </div>
-      <div className="flex flex-col items-start md:items-end gap-3 mt-6 md:mt-0 md:w-5/12">
-        <div className="flex flex-wrap gap-2 justify-start md:justify-end">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-4 py-1.5 rounded-full border border-white/10 text-white/70 text-xs tracking-wider font-medium bg-white/[0.02] transition-colors duration-500 hover:bg-white/10"
-            >
-              {tag}
-            </span>
-          ))}
+    <Link href={`/work/${slug}`} className="block">
+      <div className="group cursor-pointer flex flex-col md:flex-row md:items-center justify-between border-t border-white/10 py-8 md:py-12 transition-all hover:border-white/30">
+        <div className="flex flex-col gap-2 md:w-5/12">
+          <h3 className="text-2xl md:text-3xl font-semibold text-white tracking-tight group-hover:text-blue-400 transition-colors duration-500">
+            {title}
+          </h3>
+          <p className="text-white/50 mt-1 text-lg leading-relaxed font-light">
+            {description}
+          </p>
         </div>
-        <span className="text-white/30 text-sm font-mono tracking-widest uppercase mt-2">
-          {year}
-        </span>
+        <div className="flex flex-col items-start md:items-end gap-3 mt-6 md:mt-0 md:w-5/12">
+          <div className="flex flex-wrap gap-2 justify-start md:justify-end">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-4 py-1.5 rounded-full border border-white/10 text-white/70 text-xs tracking-wider font-medium bg-white/[0.02] transition-colors duration-500 hover:bg-white/10"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <span className="text-white/30 text-sm font-mono tracking-widest uppercase mt-2">
+            {year}
+          </span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -66,7 +72,7 @@ export function WorkPageClient() {
         <section className="w-full relative z-10">
           <GridMotion
             gradientColor="#060606"
-            items={BENTO_ITEMS.map((item) => item.imageUrl)}
+            items={BENTO_ITEMS}
           />
         </section>
 
@@ -78,30 +84,16 @@ export function WorkPageClient() {
           </div>
 
           <div className="flex flex-col">
-            <WorkListItem
-              title="Project Alpha"
-              description="Deep dive into state-of-the-art enterprise AI solutions, modernizing standard workflows."
-              tags={["Enterprise", "AI/ML"]}
-              year="2026"
-            />
-            <WorkListItem
-              title="Quantum UI"
-              description="Minimalist interface framework designed for complex, high-frequency data systems."
-              tags={["Web3", "Design System"]}
-              year="2025"
-            />
-            <WorkListItem
-              title="Fintech Mobile"
-              description="Reimagined digital banking experiences anchored on a dark-mode first design philosophy."
-              tags={["Fintech", "React Native"]}
-              year="2025"
-            />
-            <WorkListItem
-              title="Web3 Trading Engine"
-              description="Real-time orderbook rendering leveraging custom WebGL geometries for speed."
-              tags={["WebGL", "Sockets"]}
-              year="2024"
-            />
+            {PROJECTS.map((project) => (
+              <WorkListItem
+                key={project.slug}
+                slug={project.slug}
+                title={project.title}
+                description={project.description}
+                tags={project.tags}
+                year={project.year}
+              />
+            ))}
           </div>
         </section>
       </main>

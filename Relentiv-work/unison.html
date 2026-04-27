@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNISON | Next-Gen Yield Infrastructure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for the Retro-Web3 aesthetic -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'unison-neon': '#CCFF00',
+            'unison-pink': '#FF00E5',
+            'unison-blue': '#00F0FF',
+            'unison-bg': '#F5F5F5',
+            'unison-dark': '#1A1A1A',
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+          },
+          boxShadow: {
+            'brutal': '4px 4px 0px 0px #1A1A1A',
+            'brutal-hover': '2px 2px 0px 0px #1A1A1A',
+            'brutal-lg': '8px 8px 0px 0px #1A1A1A',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="global-styles">
+    body {
+      background-color: #F5F5F5;
+      color: #1A1A1A;
+      overflow-x: hidden;
+    }
+    .brutal-border {
+      border: 3px solid #1A1A1A;
+    }
+    .pixel-grid {
+      background-image: radial-gradient(#1A1A1A 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.05;
+    }
+    /* Simple marquee effect for the status bar */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 20s linear infinite;
+    }
+  </style>
+</head>
+<body class="font-sans">
+<!-- BEGIN: BackgroundGrid -->
+<div class="fixed inset-0 pixel-grid pointer-events-none -z-10"></div>
+<!-- END: BackgroundGrid -->
+<!-- BEGIN: Navigation -->
+<nav class="sticky top-0 z-50 bg-unison-bg border-b-4 border-unison-dark px-4 md:px-8 py-4">
+<div class="max-row flex justify-between items-center">
+<div class="flex items-center gap-2 group cursor-pointer" data-purpose="logo">
+<div class="w-8 h-8 bg-unison-neon brutal-border flex items-center justify-center font-bold text-xl">U</div>
+<span class="font-mono font-bold text-xl tracking-tighter">UNISON_SYS</span>
+</div>
+<div class="hidden md:flex gap-8 font-mono font-medium">
+<a class="hover:underline decoration-unison-neon decoration-4 underline-offset-4" href="#">VAULTS</a>
+<a class="hover:underline decoration-unison-blue decoration-4 underline-offset-4" href="#">NETWORKS</a>
+<a class="hover:underline decoration-unison-pink decoration-4 underline-offset-4" href="#">DOCS</a>
+</div>
+<button class="bg-unison-neon brutal-border px-6 py-2 font-mono font-bold shadow-brutal hover:shadow-brutal-hover hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+        CONNECT_WALLET
+      </button>
+</div>
+</nav>
+<!-- END: Navigation -->
+<main class="max-w-7xl mx-auto px-4 py-12 space-y-24">
+<!-- BEGIN: HeroSection -->
+<section class="grid lg:grid-cols-2 gap-12 items-center" data-purpose="hero-content">
+<div class="space-y-8">
+<div class="inline-block bg-unison-blue brutal-border px-4 py-1 font-mono text-sm font-bold shadow-brutal">
+          PROTOCOL_V2.0_LIVE
+        </div>
+<h1 class="text-6xl md:text-8xl font-bold leading-none tracking-tight">
+          THE BEST <span class="bg-unison-neon px-2">YIELDS</span>, GUARANTEED.
+        </h1>
+<p class="text-xl md:text-2xl font-medium max-w-lg">
+          Unison is the automated liquidity layer for institutional-grade DeFi returns. No complexity, just performance.
+        </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-unison-dark text-white brutal-border border-unison-dark px-8 py-4 text-xl font-bold shadow-brutal hover:shadow-brutal-hover transition-all">
+            LAUNCH_APP
+          </button>
+<button class="bg-white brutal-border px-8 py-4 text-xl font-bold shadow-brutal hover:shadow-brutal-hover transition-all">
+            READ_WHITEPAPER
+          </button>
+</div>
+</div>
+<!-- Retro Terminal Window -->
+<div class="hidden lg:block brutal-border bg-white shadow-brutal-lg" data-purpose="hero-visual">
+<div class="border-b-4 border-unison-dark bg-unison-dark p-2 flex justify-between items-center">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-unison-pink"></div>
+<div class="w-3 h-3 rounded-full bg-unison-neon"></div>
+<div class="w-3 h-3 rounded-full bg-unison-blue"></div>
+</div>
+<span class="text-white font-mono text-xs uppercase tracking-widest">unison_terminal.exe</span>
+</div>
+<div class="p-6 font-mono space-y-4 text-sm">
+<div class="text-unison-dark/50"># Initializing yield aggregators...</div>
+<div class="flex justify-between">
+<span>&gt; TVL_INDEXED</span>
+<span class="text-unison-pink font-bold">$1,240,492,001.42</span>
+</div>
+<div class="flex justify-between">
+<span>&gt; AVG_APY_REALIZED</span>
+<span class="text-unison-neon font-bold">14.82%</span>
+</div>
+<div class="flex justify-between">
+<span>&gt; ACTIVE_STRATEGIES</span>
+<span class="text-unison-blue font-bold">42_ACTIVE</span>
+</div>
+<div class="pt-4 border-t-2 border-dashed border-unison-dark/20">
+<div class="bg-unison-dark text-unison-neon p-3 brutal-border">
+              SUCCESS: Optimal route found via Arbitrum-Mainnet bridge.
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: StatusMonitor -->
+<section class="brutal-border bg-unison-dark text-white overflow-hidden py-4" data-purpose="global-ticker">
+<div class="animate-marquee whitespace-nowrap flex font-mono uppercase font-bold tracking-widest text-lg">
+<span class="mx-8">ETH_APY: 12.4% <span class="text-unison-neon">▲</span></span>
+<span class="mx-8">USDC_APY: 18.2% <span class="text-unison-neon">▲</span></span>
+<span class="mx-8">WBTC_APY: 8.9% <span class="text-unison-pink">▼</span></span>
+<span class="mx-8">SOL_APY: 22.1% <span class="text-unison-neon">▲</span></span>
+<span class="mx-8">DAI_APY: 15.5% <span class="text-unison-blue">●</span></span>
+<!-- Duplicated for seamless loop -->
+<span class="mx-8">ETH_APY: 12.4% <span class="text-unison-neon">▲</span></span>
+<span class="mx-8">USDC_APY: 18.2% <span class="text-unison-neon">▲</span></span>
+<span class="mx-8">WBTC_APY: 8.9% <span class="text-unison-pink">▼</span></span>
+<span class="mx-8">SOL_APY: 22.1% <span class="text-unison-neon">▲</span></span>
+<span class="mx-8">DAI_APY: 15.5% <span class="text-unison-blue">●</span></span>
+</div>
+</section>
+<!-- END: StatusMonitor -->
+<!-- BEGIN: SupportedNetworks -->
+<section class="space-y-12">
+<div class="text-center">
+<h2 class="text-4xl font-bold uppercase italic tracking-tighter">Supported_Networks</h2>
+<p class="font-mono text-unison-dark/60 mt-2">// Low latency, high efficiency execution //</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- Network Card -->
+<div class="brutal-border bg-white p-6 flex flex-col items-center gap-4 hover:bg-unison-neon transition-colors group">
+<div class="w-16 h-16 bg-unison-dark brutal-border flex items-center justify-center p-2">
+<img alt="Ethereum" class="w-full grayscale group-hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt9qiU7UhUSpnnXyKpRzhS88t1R9Cwx7OgBrYUO4yIcY0aEWiPpL8xl9RmnI33spoW-YeE42AcoW0pK2p_eQkkjckYbLjqu0pOxE6N8vU9g5oQ-aho-vbhgx7q_XplHDXolvWNNL5fI0SSztbaY76-vRiFYZwJjsoVaQp9XBEU55bGHBK-SNK4FZa_UvsZCKeGe0yTbJtgYHHaO-47LeJs2bhwtWQ0R7u9gKgf8bhlD_GsSX2NPFSmVa9pG0Sc2XZonUqveZZa5DQ"/>
+</div>
+<span class="font-mono font-bold">ETHEREUM</span>
+</div>
+<!-- Network Card -->
+<div class="brutal-border bg-white p-6 flex flex-col items-center gap-4 hover:bg-unison-blue transition-colors group">
+<div class="w-16 h-16 bg-unison-dark brutal-border flex items-center justify-center p-2">
+<img alt="Arbitrum" class="w-full grayscale group-hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTrmyeI_S8aByLf7QOgCb9gQz9EJNX5b88zh242XJ3POqaA3FJNXEq2-W8xaTbSaJ2Ta4G8AjlsSycR6pCSIBmQ0e2-mLcUlU7LrKsD0jFUSS6k98sjhxvFzqbX35TeK3dlnRvlWVk6bZ2IKaMa5EBaCPcpl6CWOqhQnUQCYdXT16Xxzr1qCSVxxntce0-UYXmcqJ_aodkoq39Fv2E6f_u-Gfx0dg4_wYEKupQqxieJhhG71iOIKwfBa1YTUFYJdMqHEa9siCNwyE"/>
+</div>
+<span class="font-mono font-bold">ARBITRUM</span>
+</div>
+<!-- Network Card -->
+<div class="brutal-border bg-white p-6 flex flex-col items-center gap-4 hover:bg-unison-pink transition-colors group">
+<div class="w-16 h-16 bg-unison-dark brutal-border flex items-center justify-center p-2">
+<img alt="Optimism" class="w-full grayscale group-hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBalLgnMoOIAy-3j1E7ogfJxnMDMb6KZUGft8HIUTCYHa3mnp3nHSikqueKcn36vgyT1FwB_M0oX783mdg_fGXntHe8IbOIngGTEtX9O15hghN950-3f5IpAomYRW1VVdXV8xESoBgSLnUQzTDCmHGKtbdp6a07VxufZUTjM51tYRMFYo1t8iYR7RaPgG53aOitpjDHaVN6IymjtYfff5mP89s-81VPFA0pmTCSYKW537DKzjCm5LgXP2Fi1RVIrSsSs6GpRVg6DaY"/>
+</div>
+<span class="font-mono font-bold">OPTIMISM</span>
+</div>
+<!-- Network Card -->
+<div class="brutal-border bg-white p-6 flex flex-col items-center gap-4 hover:bg-unison-neon transition-colors group">
+<div class="w-16 h-16 bg-unison-dark brutal-border flex items-center justify-center p-2">
+<img alt="Base" class="w-full grayscale group-hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPbqmLPSWDN00U6wIskwo-qAhtCkyZ2ublJGXWWPB9m1hDln5qPcX4P5ZPB6BrcR7dPYOuJqxcuwIhm8fHgOa0V812_szMbxkJ-YhmthVZdLLNnZxxoozA0xkS5UUR9usNG-E_VSvBFi4KSOJM3o_GBJnIzrON5kmdKtigx_6yRJmYLMLVM2pY67oHlx5KdWTqWauz9-D8wPg3BmmYRDT3m89UNJlx8vIR9GXuk53khngzyiBVwfJ50XxbrWrAJE8Qggv4xkhxlso"/>
+</div>
+<span class="font-mono font-bold">BASE_NET</span>
+</div>
+</div>
+</section>
+<!-- END: SupportedNetworks -->
+<!-- BEGIN: PublicVaults -->
+<section class="space-y-12" id="vaults">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-4xl font-bold uppercase italic tracking-tighter">Public_Vaults</h2>
+<p class="font-mono text-unison-dark/60 mt-2">// Auto-compounding yield engines //</p>
+</div>
+<button class="font-mono font-bold underline decoration-unison-neon decoration-4">VIEW_ALL_MARKETS</button>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Vault Card 1 -->
+<div class="brutal-border bg-white shadow-brutal flex flex-col">
+<div class="bg-unison-neon border-b-4 border-unison-dark p-4 flex justify-between items-center">
+<span class="font-mono font-bold">STABLE_MAX_V1</span>
+<span class="bg-unison-dark text-white text-xs px-2 py-1 uppercase">USDC</span>
+</div>
+<div class="p-6 space-y-6 flex-grow">
+<div class="flex justify-between items-baseline">
+<span class="font-mono text-sm uppercase">Net APY</span>
+<span class="text-4xl font-bold tracking-tight">18.42%</span>
+</div>
+<div class="space-y-2 font-mono text-sm">
+<div class="flex justify-between">
+<span>TVL:</span>
+<span class="font-bold">$42.1M</span>
+</div>
+<div class="flex justify-between">
+<span>Risk Score:</span>
+<span class="font-bold text-green-600">LOW</span>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0">
+<button class="w-full brutal-border bg-unison-dark text-white py-3 font-mono font-bold hover:bg-unison-dark/90 transition-all">
+              DEPOSIT_FUNDS
+            </button>
+</div>
+</div>
+<!-- Vault Card 2 -->
+<div class="brutal-border bg-white shadow-brutal flex flex-col">
+<div class="bg-unison-blue border-b-4 border-unison-dark p-4 flex justify-between items-center">
+<span class="font-mono font-bold">ETH_MULTIPLIER</span>
+<span class="bg-unison-dark text-white text-xs px-2 py-1 uppercase">ETH</span>
+</div>
+<div class="p-6 space-y-6 flex-grow">
+<div class="flex justify-between items-baseline">
+<span class="font-mono text-sm uppercase">Net APY</span>
+<span class="text-4xl font-bold tracking-tight">12.15%</span>
+</div>
+<div class="space-y-2 font-mono text-sm">
+<div class="flex justify-between">
+<span>TVL:</span>
+<span class="font-bold">$128.5M</span>
+</div>
+<div class="flex justify-between">
+<span>Risk Score:</span>
+<span class="font-bold text-yellow-600">MED</span>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0">
+<button class="w-full brutal-border bg-unison-dark text-white py-3 font-mono font-bold hover:bg-unison-dark/90 transition-all">
+              DEPOSIT_FUNDS
+            </button>
+</div>
+</div>
+<!-- Vault Card 3 -->
+<div class="brutal-border bg-white shadow-brutal flex flex-col">
+<div class="bg-unison-pink border-b-4 border-unison-dark p-4 flex justify-between items-center">
+<span class="font-mono font-bold">DEGEN_SWEEP</span>
+<span class="bg-unison-dark text-white text-xs px-2 py-1 uppercase">WETH/SOL</span>
+</div>
+<div class="p-6 space-y-6 flex-grow">
+<div class="flex justify-between items-baseline">
+<span class="font-mono text-sm uppercase">Net APY</span>
+<span class="text-4xl font-bold tracking-tight">42.88%</span>
+</div>
+<div class="space-y-2 font-mono text-sm">
+<div class="flex justify-between">
+<span>TVL:</span>
+<span class="font-bold">$8.4M</span>
+</div>
+<div class="flex justify-between">
+<span>Risk Score:</span>
+<span class="font-bold text-red-600">HIGH</span>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0">
+<button class="w-full brutal-border bg-unison-dark text-white py-3 font-mono font-bold hover:bg-unison-dark/90 transition-all">
+              DEPOSIT_FUNDS
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: PublicVaults -->
+<!-- BEGIN: TechSpecs -->
+<section class="grid md:grid-cols-2 gap-12 bg-white brutal-border p-8 md:p-12 shadow-brutal-lg">
+<div class="space-y-6">
+<h2 class="text-3xl font-bold uppercase">Infrastructure_Specs</h2>
+<div class="font-mono space-y-4">
+<div class="flex gap-4 items-start">
+<span class="text-unison-neon text-2xl">01</span>
+<p>Our <strong>Z-Routing</strong> engine analyzes liquidity across 14 chains to find the highest non-inflationary yields.</p>
+</div>
+<div class="flex gap-4 items-start">
+<span class="text-unison-blue text-2xl">02</span>
+<p><strong>Smart-Collateral</strong> rebalancing occurs every 12 seconds, minimizing slippage and maximizing uptime.</p>
+</div>
+<div class="flex gap-4 items-start">
+<span class="text-unison-pink text-2xl">03</span>
+<p>Audited by <strong>OpenZeppelin</strong> and <strong>Trail of Bits</strong>. Non-custodial by design.</p>
+</div>
+</div>
+</div>
+<div class="bg-unison-dark p-6 brutal-border text-unison-neon font-mono text-sm overflow-hidden relative">
+<!-- Visual "Code" block -->
+<div class="opacity-80">
+<p>struct VaultStrategy {</p>
+<p class="pl-4">address underlying;</p>
+<p class="pl-4">uint256 targetAPY;</p>
+<p class="pl-4">bool active;</p>
+<p>}</p>
+<p class="mt-4">function executeYieldHarvest() public {</p>
+<p class="pl-4">checkRiskThreshold();</p>
+<p class="pl-4 text-unison-blue">rebalanceLiquidity(getOptimalRoute());</p>
+<p class="pl-4 text-unison-pink">emit YieldDistributed(block.timestamp);</p>
+<p>}</p>
+<div class="absolute bottom-4 right-4 animate-pulse">_CURSOR</div>
+</div>
+</div>
+</section>
+<!-- END: TechSpecs -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-unison-dark text-white mt-24 py-12 px-4 border-t-8 border-unison-neon">
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+<div class="col-span-2 space-y-6">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-unison-neon brutal-border border-white flex items-center justify-center font-bold text-xl text-unison-dark">U</div>
+<span class="font-mono font-bold text-2xl tracking-tighter">UNISON_SYS</span>
+</div>
+<p class="font-mono text-gray-400 max-w-sm">
+          Next-generation yield infrastructure. Building the foundation for the decentralized financial stack.
+        </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 brutal-border border-white bg-white/10 flex items-center justify-center cursor-pointer hover:bg-unison-neon hover:text-unison-dark transition-colors">𝕏</div>
+<div class="w-10 h-10 brutal-border border-white bg-white/10 flex items-center justify-center cursor-pointer hover:bg-unison-blue hover:text-unison-dark transition-colors">D</div>
+<div class="w-10 h-10 brutal-border border-white bg-white/10 flex items-center justify-center cursor-pointer hover:bg-unison-pink hover:text-unison-dark transition-colors">G</div>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-mono font-bold text-unison-blue">// LINKS</h4>
+<ul class="font-mono space-y-2 text-sm">
+<li><a class="hover:text-unison-neon" href="#">Launch_App</a></li>
+<li><a class="hover:text-unison-neon" href="#">Governance</a></li>
+<li><a class="hover:text-unison-neon" href="#">Risk_Framework</a></li>
+<li><a class="hover:text-unison-neon" href="#">Security_Audits</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-mono font-bold text-unison-pink">// SYSTEM_STATUS</h4>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-unison-neon rounded-full animate-pulse"></div>
+<span class="font-mono text-sm">ALL_SYSTEMS_OPERATIONAL</span>
+</div>
+<p class="text-xs font-mono text-gray-500">Node_v4.2.1-stable<br/>Cluster: Mainnet-Beta-01</p>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/10 text-center font-mono text-xs text-gray-500">
+      © 2024 UNISON_INFRASTRUCTURE_LABS. ALL_RIGHTS_RESERVED.
+    </div>
+</footer>
+<!-- END: Footer -->
+</body></html>
