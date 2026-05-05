@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 import { getCalApi } from "@calcom/embed-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { useLightEffects } from "@/lib/useLightEffects";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -93,8 +94,14 @@ export function Navbar() {
   const [theme, setTheme] = useState<NavTheme>("dark");
   const rafRef = useRef<number | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const lightEffects = useLightEffects();
 
   const detectTheme = useCallback(() => {
+    if (lightEffects) {
+      setTheme("dark");
+      return;
+    }
+
     // Sample the center-bottom edge of the navbar
     const navHeight = navRef.current?.offsetHeight ?? 60;
     const centerX = window.innerWidth / 2;
@@ -103,19 +110,14 @@ export function Navbar() {
     const elementBelow = document.elementFromPoint(centerX, sampleY);
     const detected = getThemeFromElement(elementBelow);
     setTheme(detected);
-  }, []);
+  }, [lightEffects]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
-
-      // Throttle theme detection with rAF
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(detectTheme);
     };
 
-    // Run once on mount
-    detectTheme();
+    rafRef.current = requestAnimationFrame(detectTheme);
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {

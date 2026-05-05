@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { BookCallButton } from "@/components/BookCallButton";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
@@ -94,13 +95,12 @@ export default function ServicesPage() {
               vendors.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contact"
+              <BookCallButton
                 className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
               >
-                Start a project
+                Book a Call to Start a Project
                 <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
+              </BookCallButton>
               <Link
                 href="/work"
                 className="inline-flex items-center gap-2 rounded-full border border-white/12 px-5 py-3 text-sm font-medium text-white/72 transition-colors hover:border-white/30 hover:text-white"
@@ -141,4 +141,3 @@ export default function ServicesPage() {
     </>
   );
 }
-

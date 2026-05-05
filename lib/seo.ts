@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "Relentiv",
   legalName: "Relentiv",
-  url: "https://relentiv.com",
+  url: "https://www.relentiv.com",
   email: "contact@relentiv.com",
   logo: "/logo.png",
   description:
@@ -131,4 +131,3 @@ export const publicRoutes = [
   { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms-of-service", priority: 0.3, changeFrequency: "yearly" },
 ] as const;
-

@@ -1,9 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
-import PixelBlast from "@/components/PixelBlast";
 import { motion, Variants } from "framer-motion";
+import { useLightEffects } from "@/lib/useLightEffects";
+
+const PixelBlast = dynamic(() => import("@/components/PixelBlast"), {
+  ssr: false,
+});
 
 const founderImageUrl =
   "https://media.licdn.com/dms/image/v2/D5603AQFa0_aLA-We6w/profile-displayphoto-scale_200_200/B56Z2NM_nvIYAY-/0/1776190489486?e=1778716800&v=beta&t=mHPjyW3NZLj_CN3tK3L4Qlx50BJf0SzSDBOMqRElDlk";
@@ -42,6 +47,8 @@ const founderOrbitLabels = [
 ];
 
 export function AboutPageClient() {
+  const lightEffects = useLightEffects();
+
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -61,29 +68,33 @@ export function AboutPageClient() {
       <main className="flex-1 relative flex flex-col w-full min-h-screen">
 
         {/* Background */}
-        <div className="fixed inset-0 -z-10 w-full h-full bg-black pointer-events-auto overflow-hidden">
+        <div className="fixed inset-0 -z-10 h-full w-full overflow-hidden bg-black pointer-events-none">
           <div className="absolute inset-0 opacity-40">
-            <PixelBlast
-              className=""
-              style={{}}
-              variant="circle"
-              pixelSize={6}
-              color="#B497CF"
-              patternScale={3}
-              patternDensity={1.2}
-              pixelSizeJitter={0.5}
-              enableRipples
-              rippleSpeed={0.4}
-              rippleThickness={0.12}
-              rippleIntensityScale={1.5}
-              liquid
-              liquidStrength={0.12}
-              liquidRadius={1.2}
-              liquidWobbleSpeed={5}
-              speed={0.6}
-              edgeFade={0.25}
-              transparent
-            />
+            {lightEffects ? (
+              <div className="h-full w-full bg-[radial-gradient(circle_at_50%_18%,rgba(180,151,207,0.22),transparent_24%),radial-gradient(circle_at_15%_78%,rgba(255,255,255,0.08),transparent_20%),linear-gradient(180deg,#090909_0%,#120d18_42%,#050505_100%)]" />
+            ) : (
+              <PixelBlast
+                className=""
+                style={{}}
+                variant="circle"
+                pixelSize={6}
+                color="#B497CF"
+                patternScale={3}
+                patternDensity={1.2}
+                pixelSizeJitter={0.5}
+                enableRipples
+                rippleSpeed={0.4}
+                rippleThickness={0.12}
+                rippleIntensityScale={1.5}
+                liquid
+                liquidStrength={0.12}
+                liquidRadius={1.2}
+                liquidWobbleSpeed={5}
+                speed={0.6}
+                edgeFade={0.25}
+                transparent
+              />
+            )}
           </div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,rgba(0,0,0,1)_100%)] pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80 pointer-events-none" />
@@ -93,13 +104,13 @@ export function AboutPageClient() {
 
           {/* Hero */}
           <motion.section
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+            initial={lightEffects ? false : "hidden"}
+            animate={lightEffects ? undefined : "visible"}
+            variants={lightEffects ? undefined : staggerContainer}
             className="flex flex-col gap-8 pt-16 md:pt-32 max-w-4xl pointer-events-auto"
           >
             <motion.h1
-              variants={fadeInUp}
+              variants={lightEffects ? undefined : fadeInUp}
               className="text-6xl md:text-8xl lg:text-[8rem] font-extrabold tracking-tighter leading-[0.9] drop-shadow-2xl"
               style={{ fontFamily: "var(--font-doto)" }}
             >
@@ -109,7 +120,7 @@ export function AboutPageClient() {
               </span>
             </motion.h1>
             <motion.p
-              variants={fadeInUp}
+              variants={lightEffects ? undefined : fadeInUp}
               className="text-[#f5f5f5]/80 text-xl md:text-3xl max-w-2xl font-medium leading-relaxed drop-shadow-md"
             >
               Relentiv is led publicly by Anishka Barman, founder at Relentiv.
@@ -121,17 +132,17 @@ export function AboutPageClient() {
           {/* Founder */}
           <motion.section
             id="founder"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
+            initial={lightEffects ? false : "hidden"}
+            whileInView={lightEffects ? undefined : "visible"}
+            viewport={lightEffects ? undefined : { once: true, margin: "-100px" }}
+            variants={lightEffects ? undefined : staggerContainer}
             className="pointer-events-auto"
           >
             <div className="relative grid lg:grid-cols-2 overflow-hidden rounded-[1.5rem] border border-white/[0.08]">
 
               {/* Photo */}
               <motion.div
-                variants={fadeInUp}
+                variants={lightEffects ? undefined : fadeInUp}
                 className="relative min-h-[520px] lg:min-h-[680px] overflow-hidden bg-[#050505]"
               >
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:56px_56px] opacity-55" />
@@ -174,7 +185,7 @@ export function AboutPageClient() {
 
               {/* Text panel */}
               <motion.div
-                variants={fadeInUp}
+                variants={lightEffects ? undefined : fadeInUp}
                 className="relative flex flex-col justify-end gap-10 bg-[#080808] p-10 md:p-14 lg:p-16"
               >
                 <div
@@ -242,14 +253,14 @@ export function AboutPageClient() {
 
           {/* Philosophy */}
           <motion.section
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
+            initial={lightEffects ? false : "hidden"}
+            whileInView={lightEffects ? undefined : "visible"}
+            viewport={lightEffects ? undefined : { once: true, margin: "-100px" }}
+            variants={lightEffects ? undefined : staggerContainer}
             className="flex flex-col gap-10 pointer-events-auto"
           >
             <motion.h2
-              variants={fadeInUp}
+              variants={lightEffects ? undefined : fadeInUp}
               className="text-4xl md:text-5xl font-bold tracking-tight"
             >
               Our Philosophy
@@ -258,7 +269,7 @@ export function AboutPageClient() {
               {philosophyItems.map((val, i) => (
                 <motion.li
                   key={i}
-                  variants={fadeInUp}
+                  variants={lightEffects ? undefined : fadeInUp}
                   className="p-10 rounded-[2rem] bg-white/[0.02] backdrop-blur-xl border border-white/10 hover:bg-white/[0.04] transition-colors duration-500 hover:border-white/20"
                 >
                   <h3
@@ -275,21 +286,21 @@ export function AboutPageClient() {
 
           {/* Technical Expertise */}
           <motion.section
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
+            initial={lightEffects ? false : "hidden"}
+            whileInView={lightEffects ? undefined : "visible"}
+            viewport={lightEffects ? undefined : { once: true, margin: "-100px" }}
+            variants={lightEffects ? undefined : staggerContainer}
             className="flex flex-col gap-10 pointer-events-auto"
           >
             <div className="flex flex-col gap-4">
               <motion.h2
-                variants={fadeInUp}
+                variants={lightEffects ? undefined : fadeInUp}
                 className="text-4xl md:text-5xl font-bold tracking-tight"
               >
                 Technical Expertise
               </motion.h2>
               <motion.p
-                variants={fadeInUp}
+                variants={lightEffects ? undefined : fadeInUp}
                 className="text-[#f5f5f5]/70 text-lg md:text-xl max-w-2xl"
               >
                 We are structured as an elite strike team. We deploy
@@ -302,7 +313,7 @@ export function AboutPageClient() {
               {expertiseItems.map((skill, i) => (
                 <motion.div
                   key={i}
-                  variants={fadeInUp}
+                  variants={lightEffects ? undefined : fadeInUp}
                   className="p-8 rounded-3xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/5 flex flex-col items-center justify-center relative overflow-hidden group hover:border-white/10 transition-colors duration-500 min-h-[200px] text-center"
                 >
                   <div className="absolute inset-0 bg-white/[0.01] group-hover:bg-white/[0.03] transition-colors duration-500" />
@@ -320,10 +331,10 @@ export function AboutPageClient() {
 
           {/* Contact */}
           <motion.address
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
+            initial={lightEffects ? false : "hidden"}
+            whileInView={lightEffects ? undefined : "visible"}
+            viewport={lightEffects ? undefined : { once: true, margin: "-100px" }}
+            variants={lightEffects ? undefined : fadeInUp}
             className="not-italic grid grid-cols-1 md:grid-cols-2 gap-12 p-12 md:p-16 rounded-[2rem] bg-white/[0.02] backdrop-blur-xl border border-white/10 w-full mt-12 pointer-events-auto relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#B497CF]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 opacity-30 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none" />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ContactActions } from "@/components/ContactActions";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { createPageMetadata, siteConfig } from "@/lib/seo";
@@ -84,25 +84,10 @@ export default function ContactPage() {
             ))}
           </section>
 
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href={`mailto:${siteConfig.email}?subject=Project%20Inquiry%20for%20Relentiv`}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
-            >
-              Email project brief
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 rounded-full border border-white/12 px-5 py-3 text-sm font-medium text-white/72 transition-colors hover:border-white/30 hover:text-white"
-            >
-              Review services
-            </Link>
-          </div>
+          <ContactActions email={siteConfig.email} />
         </div>
       </main>
       <Footer />
     </>
   );
 }
-

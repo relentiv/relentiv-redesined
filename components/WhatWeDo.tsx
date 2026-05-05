@@ -1,5 +1,11 @@
 "use client"
-import GradientBlinds from "./GradientBlinds";
+
+import dynamic from "next/dynamic";
+import { useLightEffects } from "@/lib/useLightEffects";
+
+const GradientBlinds = dynamic(() => import("./GradientBlinds"), {
+  ssr: false,
+});
 
 const services = [
   {
@@ -33,6 +39,8 @@ const services = [
 ];
 
 export function WhatWeDo() {
+  const lightEffects = useLightEffects();
+
   return (
     <section
       id="services"
@@ -40,15 +48,19 @@ export function WhatWeDo() {
       className="w-full relative min-h-[90vh] flex flex-col items-start pt-20 md:pt-40 lg:pt-48 pb-20"
     >
       {/* WebGL Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden rounded-t-3xl md:rounded-t-[3rem]">
-        <GradientBlinds
-          gradientColors={["#7e22ce", "#3b0764", "#4c1d95", "#1e1b4b"]}
-          angle={45}
-          noise={0.3}
-          blindCount={100}
-          spotlightOpacity={1}
-          mixBlendMode="normal"
-        />
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-t-3xl md:rounded-t-[3rem]">
+        {lightEffects ? (
+          <div className="absolute inset-0 bg-[linear-gradient(140deg,#12051f_0%,#1f0b36_38%,#1b1645_68%,#09090f_100%)]" />
+        ) : (
+          <GradientBlinds
+            gradientColors={["#7e22ce", "#3b0764", "#4c1d95", "#1e1b4b"]}
+            angle={45}
+            noise={0.3}
+            blindCount={100}
+            spotlightOpacity={1}
+            mixBlendMode="normal"
+          />
+        )}
         <div className="absolute inset-0 bg-black/40 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_70%_50%,transparent_30%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />
       </div>
