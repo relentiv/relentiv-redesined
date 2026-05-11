@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export const BENTO_ITEMS = [
-  { id: 1, type: "square", slug: "project-alpha", imageUrl: "https://cdn.dribbble.com/userupload/47442143/file/3052fd6607f1805a67087036acd2ec18.png?resize=1024x768&vertical=center" },
+  { id: 1, type: "square", slug: "relentiv-product", imageUrl: "/assets/demo/relentiv_product_demo.png" },
   { id: 2, type: "large", slug: "quantum-ui", imageUrl: "https://cdn.dribbble.com/userupload/47442801/file/1a4fe2e2b8d2c27c4869f0c8ce98a934.webp?resize=1024x770&vertical=center" },
   { id: 3, type: "tall", slug: "unison", imageUrl: "/assets/demo/unison.png" },
   { id: 4, type: "square", slug: "tarn-knowledge", imageUrl: "/assets/demo/tarn-knowledge.png" },
@@ -21,7 +21,7 @@ export const BENTO_ITEMS = [
   { id: 13, type: "square", slug: "project-alpha", imageUrl: "https://cdn.dribbble.com/userupload/16600204/file/original-e851cdc107c9bd7d0335b452942f16d5.png?resize=1024x768&vertical=center" },
   { id: 14, type: "wide", slug: "quantum-ui", imageUrl: "https://cdn.dribbble.com/userupload/36942394/file/original-8d149543fd37264940ab3826fd3fbcdd.png?resize=1600x1200&vertical=center" },
   { id: 15, type: "square", slug: "unison", imageUrl: "/assets/demo/unison.png" },
-  { id: 16, type: "square", slug: "tarn-knowledge", imageUrl: "/assets/demo/tarn-knowledge.png" },
+  { id: 16, type: "square", slug: "relentiv-product", imageUrl: "/assets/demo/relentiv_product_demo.png" },
 ];
 
 export function WorksBentoGrid() {

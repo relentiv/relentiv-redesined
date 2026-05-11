@@ -47,5 +47,15 @@ export const PROJECTS: Project[] = [
     imageUrl: "/assets/demo/tarn-knowledge.png",
     fullDescription: "Tarn Knowledge Service empowers growth through intentional strategy and archival precision. It provides a seamless bridge between raw data and actionable wisdom, helping individuals and organizations navigate the complexities of digital asset management. Its specialized pathways cater to students, corporate entities, and events, ensuring tailored knowledge infrastructure for every need.",
     demoUrl: "/projects/tarn_knowledge.html"
+  },
+  {
+    slug: "relentiv-product",
+    title: "Relentiv Product Demo",
+    description: "Demo description for the deployed Relentiv product.",
+    tags: ['Demo', 'Product', 'Web App'],
+    year: "2026",
+    imageUrl: "/assets/demo/relentiv_product_demo.png",
+    fullDescription: "An interactive demonstration of the Relentiv product ecosystem, showcasing state-of-the-art UI/UX patterns, high-performance data processing, and seamless user experiences. This deployed demo allows users to explore the capabilities of the core application in a live environment.",
+    demoUrl: "https://relentiv-product-hri8hovzp-relentiv.vercel.app/"
   }
 ];
