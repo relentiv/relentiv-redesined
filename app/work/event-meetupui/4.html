@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Details &amp; RSVP</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec37",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body>
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden font-display pb-24">
+<!-- Hero Section with Overlay Header -->
+<div class="relative w-full h-[320px] shrink-0">
+<!-- Header Controls Overlay -->
+<div class="absolute top-0 left-0 w-full z-20 flex items-center justify-between p-4 pt-6">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-colors border border-white/10">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-colors border border-white/10">
+<span class="material-symbols-outlined" style="font-size: 24px;">ios_share</span>
+</button>
+</div>
+<!-- Hero Image -->
+<div class="w-full h-full bg-gray-200 bg-center bg-cover" data-alt="Close up of a broken footpath in Bengaluru Indiranagar with green trees in background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwH1bQHeR980vKl0WcHcD5O2gRNUdrRKo0b8X0mUGRlHbZagcELqBPOW5ub44piUmigMyQwpuxdasTQZYNEgrVtczhRv8xse5TXQw_PcaPssAa9tnXMMbj5LK-FHoaifaWMeyaz3APELiAhjRXc2PClfAv5k7RzQrOfX0XJWK8iEgN2ArxfnBWZSemwFO1LvipD9L8XmOOVMG6upHh4jZzvU_pkylXNEAkPhrO0XFkxAbS0Bgs0Wozm8Ab4WlHDezYNiT_IzvH3nw");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent opacity-60"></div>
+<!-- Gradient Blend to Content -->
+<div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent"></div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="px-5 -mt-8 relative z-10 flex flex-col gap-6">
+<!-- Headline & Meta -->
+<div>
+<div class="flex items-start justify-between">
+<span class="inline-flex items-center rounded-full bg-primary/20 dark:bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-green-800 dark:text-primary mb-3 border border-primary/20">
+                        OPEN FOR ALL
+                    </span>
+</div>
+<h1 class="text-[#111812] dark:text-white text-3xl font-extrabold leading-tight tracking-tight mb-2">
+                    Footpath Restoration Walk
+                </h1>
+<p class="text-[#618968] dark:text-gray-400 text-sm font-medium leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">location_on</span>
+                    Indiranagar 12th Main • 2.5km Stretch
+                </p>
+</div>
+<!-- Date & Time Row -->
+<div class="flex gap-4">
+<div class="flex-1 bg-white dark:bg-white/5 p-3 rounded-xl border border-gray-100 dark:border-white/10 flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-green-700 dark:text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Date</p>
+<p class="text-sm font-bold text-[#111812] dark:text-white">Sat, Oct 14</p>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-white/5 p-3 rounded-xl border border-gray-100 dark:border-white/10 flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-green-700 dark:text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Time</p>
+<p class="text-sm font-bold text-[#111812] dark:text-white">07:00 AM</p>
+</div>
+</div>
+</div>
+<!-- The "Vibe" Card -->
+<div class="bg-primary/10 dark:bg-primary/5 border border-primary/20 p-4 rounded-xl flex gap-4 items-start">
+<div class="shrink-0 size-10 rounded-full bg-primary flex items-center justify-center text-[#111812] shadow-sm">
+<span class="material-symbols-outlined">hiking</span>
+</div>
+<div>
+<h3 class="text-[#111812] dark:text-white font-bold text-base mb-1">Vibe Check: Moderate</h3>
+<p class="text-sm text-[#111812]/80 dark:text-gray-300 leading-relaxed">
+                        Uneven terrain with loose gravel. Bring sturdy closed-toe shoes. We'll provide gloves and vests!
+                    </p>
+</div>
+</div>
+<!-- Participants Strip -->
+<div class="flex items-center justify-between py-2">
+<div class="flex -space-x-3 rtl:space-x-reverse">
+<img alt="User avatar" class="w-10 h-10 border-2 border-white dark:border-[#102213] rounded-full object-cover" data-alt="Portrait of a smiling young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCflIk5ru0w3pIAm_IgXwaokdb3dgz2kzVsXYoIWTeV1l_gjf0sNR7pF6vpLC2t7VU11_hmzuz80UfI-THDFeL2RdI3Eojcz4UiAVb5UAIgP7-4Ags-VyVNvNqzWPstMSCC0gD8iOt428moj8a9tR9LC4PIJisosoFA6BHjrB9QsxxENLGIPkgDCGOCzlGUnhR-E3ppm-I75BJqIoKs6t6akl58BELRGn-aZqtvZkLUEBTfXIHzYM9OaMm59RowCRo8ttpHA4cGHc"/>
+<img alt="User avatar" class="w-10 h-10 border-2 border-white dark:border-[#102213] rounded-full object-cover" data-alt="Portrait of a young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtSQ0Itygp3HUxt-58mgMM_OUDwmFaNczCA5FjUorR6S-2NUkimJIlqbe_qQUcz1SeFyNjqhJvNZkc7NZUp2Zqw9Nli73p0vTMLdxNR6gIBVeHJCoVm83PfwWRMtuGmdnduTGKCkKlq2i6todMbKIVlG6DVOFhEeHiuUucBKbQJI19e7dCXlZLjTqcs9QG6e1ExvYP0luHxdGL0cBr5KUREe8SyI332txUwVMbh8I7-n52GgxXLIVIx1oJm06Kb5FoK4vNrbcGObw"/>
+<img alt="User avatar" class="w-10 h-10 border-2 border-white dark:border-[#102213] rounded-full object-cover" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvpxv44K0CQ4ignpPgypFHeNA_ANa3LB9WEH0Ro9jap6973qw2egX59AiAKLQWUunHlJoUbhEgn6bE4OBNicXH_S2iGiTvyXteSQvCXvlGzf1Fa7qI8cwXbGn9m2yMWmmyOdgYwepql2pfUue3aEYiV5mjKLO9zmAkhTTVL30kL33Mzi3Xo4hX_QdoXa1hCX-pYJX0LVH5IDXayFB6QCBVueV6BIZvydyygR1S8NzDD4MZ2K7rXvlxQZHKxR7jaQ9lNSqEMkFs8Lo"/>
+<div class="flex items-center justify-center w-10 h-10 text-xs font-bold text-white bg-gray-800 border-2 border-white dark:border-[#102213] rounded-full hover:bg-gray-600">
+                        +42
+                    </div>
+</div>
+<div class="text-right">
+<p class="text-[#111812] dark:text-white text-sm font-bold">Citizens Joining</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Be part of the change</p>
+</div>
+</div>
+<div class="h-px bg-gray-100 dark:bg-white/10 w-full"></div>
+<!-- Agenda / What to expect -->
+<div>
+<h3 class="text-[#111812] dark:text-white text-lg font-bold mb-4">What to expect</h3>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-primary shrink-0"></div>
+<span class="text-[#111812] dark:text-gray-200 text-sm font-medium">Initial site assessment &amp; trash collection</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-primary shrink-0"></div>
+<span class="text-[#111812] dark:text-gray-200 text-sm font-medium">Removing invasive weeds from tree beds</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-primary shrink-0"></div>
+<span class="text-[#111812] dark:text-gray-200 text-sm font-medium">Mapping broken paving stones for BBMP report</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-primary shrink-0"></div>
+<span class="text-[#111812] dark:text-gray-200 text-sm font-medium">Community breakfast at Toit (Self-sponsored)</span>
+</div>
+</div>
+</div>
+<!-- Mini Map -->
+<div class="pb-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-[#111812] dark:text-white text-lg font-bold">Meeting Point</h3>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+                        Open Maps <span class="material-symbols-outlined text-base">open_in_new</span>
+</button>
+</div>
+<div class="w-full h-48 rounded-xl overflow-hidden relative shadow-sm border border-gray-100 dark:border-white/10 bg-gray-100">
+<!-- Map Image Placeholder -->
+<img alt="Map Location" class="w-full h-full object-cover" data-alt="Map view of Indiranagar 12th main street showing the meeting point marker" data-location="Indiranagar, Bengaluru" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC15xFw3DEjhYsTtCAeICHtRas_GlCAgFY1a3x43wXvsCXuyRbx4KJqs2jQGcJLulHmd7dJfcHGNF-ZwOdjCpl18lkvBk9eQ15PpjV5zut07YG0Jx9LcaeViwqM38CgKEtyRjVhRZRRhP_o8IR3Yf5qG0SE50pow9siPKUzK7ym0eeplqe39XWLItC2kO2zctPuT8X9mwkjahF9anMuGn33MQ50XjufVlgcFEWBGaxvZ3Ig_zu61eiYLn7ODbvI9N28ZyjV35ZG1go"/>
+<!-- Location Card Overlay -->
+<div class="absolute bottom-3 left-3 right-3 bg-white dark:bg-[#1a2c1d] p-3 rounded-lg shadow-lg flex items-center gap-3">
+<div class="bg-red-50 dark:bg-red-900/20 p-2 rounded-lg shrink-0 text-red-600 dark:text-red-400">
+<span class="material-symbols-outlined text-xl">pin_drop</span>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">Start Point</p>
+<p class="text-sm font-bold text-[#111812] dark:text-white line-clamp-1">Toit Brewpub Parking Lot</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full p-4 bg-white/90 dark:bg-[#102213]/90 backdrop-blur-lg border-t border-gray-100 dark:border-white/5 z-50">
+<div class="max-w-md mx-auto w-full">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-[#0fd630] active:scale-[0.98] transition-all text-[#111812] font-extrabold text-base h-12 rounded-xl shadow-lg shadow-primary/20">
+<span>JOIN THE CREW</span>
+<span class="material-symbols-outlined text-xl font-bold">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

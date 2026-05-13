@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your Event Pass</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec37",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Ticket Perforation Utility */
+        .ticket-punch-l {
+            position: absolute;
+            left: -12px;
+            top: 100%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+        .ticket-punch-r {
+            position: absolute;
+            right: -12px;
+            top: 100%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center">
+<!-- Main Container -->
+<div class="relative w-full max-w-md mx-auto min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="flex items-center p-4 justify-between z-10">
+<button class="text-[#111812] dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<h2 class="text-[#111812] dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Your Event Pass</h2>
+<button class="text-[#111812] dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 flex flex-col items-center justify-start px-6 pt-4 pb-8 w-full">
+<!-- Ticket Container -->
+<div class="w-full relative shadow-xl drop-shadow-2xl">
+<!-- Ticket Top (Header) -->
+<div class="bg-primary rounded-t-3xl p-6 relative">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="inline-flex items-center gap-1 bg-white/30 backdrop-blur-md px-2 py-1 rounded-md text-[#0a1f0e] text-xs font-bold border border-white/20">
+<span class="material-symbols-outlined text-[16px] filled">verified</span>
+                                Verified Member
+                            </span>
+<div class="size-8 rounded-full bg-white/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#0a1f0e] text-lg">park</span>
+</div>
+</div>
+<div class="mt-4">
+<p class="text-[#0a1f0e] text-sm font-semibold opacity-80 uppercase tracking-wider">Civic Action Group</p>
+<h1 class="text-[#0a1f0e] text-3xl font-extrabold leading-tight tracking-tight mt-1">Lalbagh Morning Run</h1>
+</div>
+</div>
+<!-- Perforation Circles (Visual trick to punch holes) -->
+<!-- These need to match the page background color -->
+<div class="ticket-punch-l bg-background-light dark:bg-background-dark"></div>
+<div class="ticket-punch-r bg-background-light dark:bg-background-dark"></div>
+</div>
+<!-- Dashed Line Separator -->
+<div class="bg-white relative">
+<div class="w-full border-b-2 border-dashed border-gray-300"></div>
+</div>
+<!-- Ticket Bottom (Body) -->
+<div class="bg-white rounded-b-3xl p-6 flex flex-col items-center gap-6">
+<!-- QR Code Section -->
+<div class="flex flex-col items-center gap-3 w-full">
+<div class="p-3 border-2 border-[#111812] rounded-xl bg-white w-48 h-48 flex items-center justify-center">
+<!-- Placeholder for QR Code -->
+<img alt="QR code for ticket scanning" class="w-full h-full object-contain opacity-90 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgRhicbSFSJqdbXgcdduRQnfB_WEhrces7TQbOcqDjNhZTPPPbgy-50RN-cVQTnxWqv2fBBZ_bHjnHHrAxgyrSJXmYrzUyXZFxUP_yLYFvTx-1tZsq8wk73pQqXDCH2-_D-hsJsyalXPt64qkFLEJbqLZ9LGQxhuBK8UZ79QYKr7XA3ZfKYrbEy03Peg1JnXJwWu6BB9ext3Vd93torR4CIjX6ZQKiNuCATCut1q_Usx3G8ONU4UEj_mBn14nQr7s4p1z_eCChB7Y"/>
+</div>
+<p class="text-gray-500 text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">qr_code_scanner</span>
+                            Scan at Entry
+                        </p>
+</div>
+<!-- Event Details Grid -->
+<div class="w-full grid grid-cols-2 gap-y-6 gap-x-4 border-t border-gray-100 pt-6">
+<div class="flex flex-col gap-1">
+<p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Date</p>
+<p class="text-[#111812] text-base font-bold">24 Sept, 2023</p>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Time</p>
+<p class="text-[#111812] text-base font-bold">06:00 AM</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Gate Entry</p>
+<p class="text-[#111812] text-base font-bold">West Gate</p>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Location</p>
+<p class="text-[#111812] text-base font-bold truncate">Lalbagh Gardens</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full mt-8 flex flex-col gap-3">
+<!-- Add to Apple Wallet (Standard Black) -->
+<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 bg-[#111812] text-white shadow-lg transition-transform active:scale-[0.98]">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[24px]">wallet</span>
+<span class="text-base font-bold tracking-wide">Add to Apple Wallet</span>
+</div>
+</button>
+<!-- Share Pass (Secondary) -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent border-2 border-gray-200 dark:border-white/20 text-[#111812] dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors active:scale-[0.98]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span class="text-sm font-bold tracking-wide">Share Pass</span>
+</div>
+</button>
+</div>
+<!-- Footer / Help -->
+<div class="mt-6">
+<a class="text-gray-400 text-xs font-medium hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+                    Need help with your ticket?
+                </a>
+</div>
+</main>
+</div>
+</body></html>

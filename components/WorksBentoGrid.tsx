@@ -6,7 +6,9 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export const BENTO_ITEMS = [
-  { id: 1, type: "square", slug: "relentiv-product", imageUrl: "/assets/demo/relentiv_product_demo.png" },
+  { id: 17, type: "large", slug: "event-meetup-app", imageUrl: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80" },
+  { id: 18, type: "square", slug: "event-meetup-app", imageUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=80" },
+  { id: 1, type: "square", slug: "project-alpha", imageUrl: "https://cdn.dribbble.com/userupload/47442143/file/3052fd6607f1805a67087036acd2ec18.png?resize=1024x768&vertical=center" },
   { id: 2, type: "large", slug: "quantum-ui", imageUrl: "https://cdn.dribbble.com/userupload/47442801/file/1a4fe2e2b8d2c27c4869f0c8ce98a934.webp?resize=1024x770&vertical=center" },
   { id: 3, type: "tall", slug: "unison", imageUrl: "/assets/demo/unison.png" },
   { id: 4, type: "square", slug: "tarn-knowledge", imageUrl: "/assets/demo/tarn-knowledge.png" },

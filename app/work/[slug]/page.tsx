@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PROJECTS } from "@/lib/projects";
 import { GridBackground } from "@/components/GridBackground";
@@ -12,6 +13,7 @@ import Image from "next/image";
 export default function ProjectPage() {
   const params = useParams();
   const router = useRouter();
+  const [activePreview, setActivePreview] = useState({ slug: "", index: 0 });
   const slug = params.slug as string;
   const project = PROJECTS.find((p) => p.slug === slug);
 
@@ -23,6 +25,16 @@ export default function ProjectPage() {
       </div>
     );
   }
+
+  const demoScreens =
+    project.demoScreens ??
+    (project.demoUrl ? [{ label: "Live UI", url: project.demoUrl }] : []);
+  const activePreviewIndex = activePreview.slug === slug ? activePreview.index : 0;
+  const selectedPreview =
+    demoScreens.length > 0
+      ? demoScreens[Math.min(activePreviewIndex, demoScreens.length - 1)]
+      : null;
+  const isMobilePreviewProject = project.slug === "event-meetup-app";
 
   return (
     <div className="flex flex-col items-center justify-start w-full relative z-0 min-h-screen bg-black text-white overflow-x-hidden">
@@ -65,13 +77,29 @@ export default function ProjectPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="w-full aspect-[16/9] relative rounded-3xl overflow-hidden border border-white/10"
+            className={
+              isMobilePreviewProject
+                ? "mx-auto flex w-full justify-center"
+                : "w-full aspect-[16/9] relative rounded-3xl overflow-hidden border border-white/10"
+            }
           >
-            {project.demoUrl ? (
+            {isMobilePreviewProject && selectedPreview ? (
+              <div className="relative w-full max-w-[430px] rounded-[2.75rem] border border-white/15 bg-[#111] p-2.5 shadow-[0_28px_90px_rgba(0,0,0,0.55)]">
+                <div className="pointer-events-none absolute left-1/2 top-4 z-20 h-1.5 w-20 -translate-x-1/2 rounded-full bg-black/70" />
+                <div className="pointer-events-none absolute right-[5.5rem] top-3.5 z-20 size-2 rounded-full bg-white/20" />
+                <div className="relative aspect-[390/844] overflow-hidden rounded-[2.25rem] bg-white">
+                  <iframe
+                    src={selectedPreview.url}
+                    className="absolute inset-0 h-full w-full border-0"
+                    title={`${project.title} - ${selectedPreview.label}`}
+                  />
+                </div>
+              </div>
+            ) : selectedPreview ? (
               <iframe 
-                src={project.demoUrl} 
+                src={selectedPreview.url} 
                 className="absolute inset-0 w-full h-full border-0"
-                title={project.title}
+                title={`${project.title} - ${selectedPreview.label}`}
               />
             ) : (
               <Image 
@@ -84,7 +112,35 @@ export default function ProjectPage() {
             )}
           </motion.div>
 
-          {project.demoUrl && (
+          {demoScreens.length > 1 && (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="mt-6 flex flex-wrap justify-center gap-3"
+            >
+              {demoScreens.map((screen, index) => {
+                const isActive = index === activePreviewIndex;
+
+                return (
+                  <button
+                    key={screen.url}
+                    type="button"
+                    onClick={() => setActivePreview({ slug, index })}
+                    className={`rounded-full border px-5 py-2 text-sm font-semibold transition-colors ${
+                      isActive
+                        ? "border-white bg-white text-black"
+                        : "border-white/10 bg-white/[0.03] text-white/65 hover:border-white/30 hover:text-white"
+                    }`}
+                  >
+                    {screen.label}
+                  </button>
+                );
+              })}
+            </motion.div>
+          )}
+
+          {selectedPreview && !isMobilePreviewProject && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,7 +148,7 @@ export default function ProjectPage() {
               className="mt-8 flex justify-center"
             >
               <a 
-                href={project.demoUrl} 
+                href={selectedPreview.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-white/90 transition-all hover:scale-105"

@@ -7,9 +7,31 @@ export interface Project {
   imageUrl: string;
   fullDescription: string;
   demoUrl?: string;
+  demoScreens?: {
+    label: string;
+    url: string;
+  }[];
 }
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "event-meetup-app",
+    title: "Event & Meetup App",
+    description: "A location-first mobile experience for discovering events, joining meetups, RSVP flows, sharing updates, and managing event passes.",
+    tags: ['Mobile App', 'Events', 'Community'],
+    year: "2026",
+    imageUrl: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
+    fullDescription: "Event & Meetup App is a mobile UI system for local community discovery. The experience spans event browsing, personalized recommendations, live city mapping, event detail and RSVP flows, community sharing, and digital pass management so users can move from discovery to attendance without losing context.",
+    demoUrl: "/projects/event-meetupui/1.html",
+    demoScreens: [
+      { label: "Explore", url: "/projects/event-meetupui/1.html" },
+      { label: "Discover", url: "/projects/event-meetupui/2.html" },
+      { label: "Map", url: "/projects/event-meetupui/3.html" },
+      { label: "RSVP", url: "/projects/event-meetupui/4.html" },
+      { label: "Share", url: "/projects/event-meetupui/5.html" },
+      { label: "Pass", url: "/projects/event-meetupui/6.html" },
+    ],
+  },
   {
     slug: "project-alpha",
     title: "Project Alpha",

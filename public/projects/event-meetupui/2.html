@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;family=Noto+Sans:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background-light": "#f6f8f6",
+                        "surface-light": "#ffffff",
+                        "status-orange": "#ea580c",
+                        "primary-dark": "#0eb52a",
+                        "text-secondary": "#637466",
+                        "background-dark": "#102213",
+                        "text-main": "#111812"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "16px",
+                        "inline-gap-sm": "8px",
+                        "container-padding": "16px",
+                        "base": "4px",
+                        "section-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Noto Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "body-main": ["Noto Sans"],
+                        "heading-lg": ["Plus Jakarta Sans"],
+                        "label-xs": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "display-xl": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-main": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "heading-lg": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                        "label-xs": ["10px", {"lineHeight": "12px", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light text-text-main font-body-main antialiased pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface-light/95 dark:bg-background-dark/95 backdrop-blur-md sticky top-0 z-50 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-container-padding py-base h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-dark">location_on</span>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-text-secondary uppercase">Discover</span>
+<span class="font-heading-lg text-heading-lg text-text-main">Bengaluru</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-dark/20">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSxhAAgJr7viGVNexm1tBCH3A6Y29QiH99ob2ccDEohL5FTLocvbn4c_-vdoza2XXOJJrtKU9rz3-EOAzMqeEDX3X7qXG2E0EpZlGxEgwmpcCZLArYzo9gmpL-OBf1rJ16wZlHG8ojYhGopdS6cQcmbR0AHtUHvGpNHlCYOIuh6W6xONC_85Ak6VkZUuujC2YFk-TmU6-mdBkQXqzwaUUP6ECnMpAb3qvVwKF_C6ch0RM1M10LWuxd268OKRxstZcEYNARDng-ick"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex flex-col">
+<!-- Location Context -->
+<section class="px-container-padding mt-4">
+<div class="flex items-center gap-2 bg-surface-light p-3 rounded-xl shadow-sm border border-primary-dark/5">
+<span class="material-symbols-outlined text-primary-dark">explore</span>
+<span class="font-label-bold text-label-bold text-text-main">Events in Indiranagar</span>
+<span class="material-symbols-outlined ml-auto text-text-secondary text-sm">keyboard_arrow_down</span>
+</div>
+</section>
+<!-- Featured Carousel -->
+<section class="mt-section-margin">
+<div class="px-container-padding mb-4 flex justify-between items-end">
+<h2 class="font-display-xl text-display-xl text-text-main font-extrabold">Featured Now</h2>
+<span class="font-label-bold text-label-bold text-primary-dark uppercase">View all</span>
+</div>
+<div class="flex overflow-x-auto gap-4 px-container-padding hide-scrollbar snap-x snap-mandatory">
+<!-- Card 1 -->
+<div class="min-w-[320px] aspect-[4/3] relative rounded-[24px] overflow-hidden snap-start group shrink-0">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A lush aerial view of Lalbagh Botanical Garden in Bengaluru during early morning hours, featuring joggers on winding paths surrounded by ancient tropical trees and vibrant green lawns. The lighting is soft and golden, characteristic of a high-contrast modern photography style, highlighting the energetic and community-focused atmosphere of the green city soul." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVea3xrygfSLj7LcTkD11eWPo8BycuSKi-8JEHpiqBFooh0AhqtNVLTD6aKwnyi_TPQ4SA5kncTF6PcxECsjKRQ7PxObKOyZ8bf4vUSlJtcVGLF65q4CuJ0k3D1spE_Krt0JYHP8kwzL5zi3P0ySzsCP704ESEE4MAtmEu7cI9iy1sclKs_z0pGr8aQY_oIkNeyRdLFv5dQNfsf429ZC2iOYFc2Q8m3EXicGdY2lKPCjuFtJumwsleVzZ8VE0RL8vMoQuh3F9qISE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<span class="bg-primary-dark text-white font-label-xs text-label-xs px-2 py-1 rounded-[4px] uppercase mb-2 inline-block">Fitness</span>
+<h3 class="font-heading-lg text-heading-lg text-white mb-1">Lalbagh Community Run</h3>
+<p class="font-body-sm text-body-sm text-white/80">Saturday, 6:00 AM • 450 joined</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[320px] aspect-[4/3] relative rounded-[24px] overflow-hidden snap-start group shrink-0">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A vibrant outdoor cultural festival at Cubbon Park, Bengaluru, with colorful art installations suspended between massive bamboo structures. People are gathered in casual summer attire under dappled sunlight filtering through the canopy. The scene uses a bright electric green and white palette, reflecting an energetic and optimistic tech-hub spirit blended with local tradition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsP4dkcNbmg9Uc1kgBFrvS06yC9YD68aGGzrMQxB5LVHtxlBRwaPKeAPuuRv7dDTj9D_Odx6B8adIGsHeIqF_elApw9XWyC0mTZw8FmVNzf8IerxViiqViJ9ldaM6x7_3IiMQ-iSCA3XUD98mQsuFI97SPlz8ezULrczgX0q682rS8bYgtp2JRdY8rKsYzhPDVMN5y12zykhXPJIp81d401FXKy_b8Uh0LtpT5ppmzKpEfxhXQgXPqnLe-MKu3NdsYFG1SIfkINBg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<span class="bg-status-orange text-white font-label-xs text-label-xs px-2 py-1 rounded-[4px] uppercase mb-2 inline-block">Art &amp; Culture</span>
+<h3 class="font-heading-lg text-heading-lg text-white mb-1">Metro Art Collective</h3>
+<p class="font-body-sm text-body-sm text-white/80">Sunday, 4:00 PM • MG Road</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Filters -->
+<section class="mt-section-margin px-container-padding">
+<div class="flex overflow-x-auto gap-3 hide-scrollbar pb-2">
+<button class="px-5 py-[9px] bg-primary-dark text-white rounded-full font-label-bold text-label-bold whitespace-nowrap transition-transform active:scale-95">All</button>
+<button class="px-5 py-[9px] bg-surface-light border border-text-secondary/20 text-text-main rounded-full font-label-bold text-label-bold whitespace-nowrap hover:border-primary-dark/40 transition-colors">Civic</button>
+<button class="px-5 py-[9px] bg-surface-light border border-text-secondary/20 text-text-main rounded-full font-label-bold text-label-bold whitespace-nowrap hover:border-primary-dark/40 transition-colors">Fitness</button>
+<button class="px-5 py-[9px] bg-surface-light border border-text-secondary/20 text-text-main rounded-full font-label-bold text-label-bold whitespace-nowrap hover:border-primary-dark/40 transition-colors">Music</button>
+<button class="px-5 py-[9px] bg-surface-light border border-text-secondary/20 text-text-main rounded-full font-label-bold text-label-bold whitespace-nowrap hover:border-primary-dark/40 transition-colors">Tech</button>
+</div>
+</section>
+<!-- Happening Near You List -->
+<section class="mt-section-margin px-container-padding flex flex-col gap-stack-gap">
+<h2 class="font-heading-lg text-heading-lg text-text-main">Happening Near You</h2>
+<!-- Feed Item 1 -->
+<div class="flex gap-4 p-3 bg-surface-light rounded-xl shadow-[0_4px_20px_-2px_rgba(19,236,55,0.06)] border border-white">
+<div class="w-[112px] h-[112px] rounded-xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A modern, high-contrast interior of a coworking space in Indiranagar, Bengaluru, filled with young professionals and plants. Natural light floods through large windows onto clean white desks. The vibe is productive yet social, capturing the city's tech-driven community spirit with subtle electric green accents in the decor and digital screens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4G1vzuisnBKvV-CeMKQ5U5unSbY4xcQOBxZasf3SuHpZvleBDLWFW_XyS2yYJdkIXom8_0S2f86DSfYuvqOD9K1_Dg9OHvMg8TYRkXCar1wUtN5j3Ts0jKKzdb_PdEHmrXSE0Wu3_KFwzmEVTiMUB2qyE6I8P7_fwGMsmLH8c6JeRf82CvAegv6hlHztkglhQ9SxPomztr5TpZxHdffgC8HLciBVz1QNeNz0OF9HS8DRB7o1jD9oysEdW5NmIDFiByBi_u7TKiwo"/>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="text-primary-dark font-label-bold text-label-bold uppercase">Today</span>
+<span class="text-text-secondary font-label-bold text-label-bold">• 4 PM</span>
+</div>
+<h3 class="font-label-bold text-body-main text-text-main line-clamp-1">Startup Founders Mixer</h3>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1">The High Grounds, Indiranagar</p>
+<div class="flex items-center mt-3">
+<div class="flex -space-x-2">
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgz32VKQoQjtkLwDDpcfGQH_86vgIeH_UE86-dAqS0egciOPu0--OQqva_0uhjxvUaHYu281-ay_h43s4-WPZ5innKui_-U_cFM_ojsyteEIwEfzeyVEKNbCwvCz8vyUC1sq42nIc_PzhlHYj4dcUK_5s0E-qYpk1RD7AwT7z_THXHGUuTjIuuG5IUlhcWC73GzX2wjFTGtr7jctWmrx6Mj-G4s1lBPrMSb2oNeYowylbGRWJAnFPhgfLk3Q28WylBn3PgW0GnvSg"/>
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZuRN7B2mDACNudOT5GFIqJADQRi7DXm3H8JJOnTkoJptlEsAWcg2Po8msP3GaRUD61nnX-QcYy4NK406f8K9lYA9VRiL0vLth2sDvA5qvGmafqYbzRrazrjH-O2B6HWMkbnUNnjhyeKcEHJmYm7LnbuEC_MUEQRZCQq04Ed1a-LsYcIFVHx8mzMHM3Sa0EYSQU_d_Vk9uRHU3Ld-jmRdo_orHbiboSeAtiKsxp33PkLTPPYDNt9Bg3iDRFF0ZrkHkWmJINl0XIiQ"/>
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9a61r8aiN5_Kqlepotl73grA2tq0jP-jWjEDPkp92qYQ7Oik_MEekpHVncABF6EXTrnuktheBW8IMuG45Lb31pF4e4hBhim5hd_W2iqgUy7cfhoj6OCJ8ycomVefdIR_WQbziN7vYlfPEiS6cKEQjSY-v7aUKRTVjkEe_cmiWs1uikwooGYSJ8Islp7eupN_b1u3cilRNQjb37NM8Zrdg4Jf-hZ0EJ5_gLCODfLPHDBwxg0RgnSg2XXri1KT6XUOla1r6xkt-F7w"/>
+<div class="w-6 h-6 rounded-full border-2 border-surface-light bg-primary-dark/20 flex items-center justify-center">
+<span class="text-[8px] font-bold text-primary-dark">+12</span>
+</div>
+</div>
+<span class="ml-3 font-label-xs text-label-xs text-text-secondary uppercase">Joined</span>
+</div>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="flex gap-4 p-3 bg-surface-light rounded-xl shadow-[0_4px_20px_-2px_rgba(19,236,55,0.06)] border border-white">
+<div class="w-[112px] h-[112px] rounded-xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A serene yoga session at sunrise in a public park in Bengaluru, with participants in diverse poses against a background of lush greenery and misty morning air. The composition focuses on balance and wellness, utilizing soft green tones and high-key lighting to convey a calm yet energetic community soul, reflecting the 'green city' brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg1EdvRufc4YumP0lrkaRZORKvU2iSB2U91IND9opq5eyOAi1_bAr7NabMvFkTRrnmI95StgUWMVMYJiiDnJNmh3Voa6IAh9HaU8hBUeQ_NAoLh_tnrYWEKgfU-ODrSLcci3MLCmFzf0bTWQEtzQaY_dukUzNYfSlXrjlG1Heo3KGqyx3CMnhGq4reEb8okis_VvW_44t-qsWuPjjXpZpfTohu-ioyNhAwsXo11TklFQXG0XAspfBWPhAl6VHPsmetK9fAuWTHnS4"/>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="text-text-secondary font-label-bold text-label-bold uppercase">Tomorrow</span>
+<span class="text-text-secondary font-label-bold text-label-bold">• 7 AM</span>
+</div>
+<h3 class="font-label-bold text-body-main text-text-main line-clamp-1">Flow &amp; Breathe Yoga</h3>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1">HSR Sector 2 Grounds</p>
+<div class="flex items-center mt-3">
+<div class="flex -space-x-2">
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj7gs7DIeOwfuQTkME0cotSInBPAGNAYLvvs5OpafEmZddNnPLq7zHGjuw5X4xfmlM9o-kLHqUq49TccYrfqs_gbnkZPUZROIXWXKMPZZTNZH9vghszwyMdAhMh7Bsi0FrkdTNtgABwdzj8i-jhs5krY9d5hVF7VhX2IrGpRp2Q59oF7Pwy7e4nmQjqjDhwckjWVaZ_F4cnCMdwl6Lwtod9ZpaAp2xiB9e7htyS-vJhYeToISkv4NJd0MhEPvdltQpclY_lwzQbD4"/>
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByazW4abPmhFHcBEPDZEVUK3lgsT97ADx7PkUSPj6rUi_wBsoEwBI8ATbeiAhy2KOk8A63qioIiRofvcC-i7QxrvRqgW3w5BADsdsViNL5d6rvdwmJWirMv_Toetua_Msfy1G66uFfKIp-YjDzwX9ECOqgKdBx8ZPRJNkM9kHHtpVPsKopHuo-rLg5A3rU_0_UnHW0mxr8Hgge3IzUntJLwksvrIzqZkF0yBGfSnudNmP8xHVvUAr-K9m8mO0sLU-zX9ppcCfUKNo"/>
+<div class="w-6 h-6 rounded-full border-2 border-surface-light bg-primary-dark/20 flex items-center justify-center">
+<span class="text-[8px] font-bold text-primary-dark">+45</span>
+</div>
+</div>
+<span class="ml-3 font-label-xs text-label-xs text-text-secondary uppercase">Interested</span>
+</div>
+</div>
+</div>
+<!-- Feed Item 3 -->
+<div class="flex gap-4 p-3 bg-surface-light rounded-xl shadow-[0_4px_20px_-2px_rgba(19,236,55,0.06)] border border-white">
+<div class="w-[112px] h-[112px] rounded-xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up of a live acoustic music performance in a dimly lit, trendy cafe in Bengaluru. Warm stage lights contrast with deep shadows, highlighting the musician's hands on a guitar. The atmosphere is intimate and sophisticated, with a modern urban feel that aligns with the bustling tech hub's nighttime culture, featuring crisp details and high-contrast visuals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOBCPrAKSoJRTrHYwwYAwijCpRwEz3JoPRrBrkVCSWqN7cPmh6bXC1Pe3RNUd2hVfsXlEP69DXVWGbmn4RUwhQXxyL09lvp31rb3YFXBK3RJmskA-n2AvbN9OAlRKX4lmefZFgC08mT0irnZPdLqX3bUQ53zcg3Nr_gXvLYa2Pqoxvse-DzsPYtEWAyAntNS7O0VghOpQ3o8sAYrFYw8jn53_sed4Bf7YGPhNwglCG6iGvXtyuZHXAJgAVbsPmmT3lrbvnqLpjiWg"/>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="text-text-secondary font-label-bold text-label-bold uppercase">SAT, 25 OCT</span>
+<span class="text-text-secondary font-label-bold text-label-bold">• 8 PM</span>
+</div>
+<h3 class="font-label-bold text-body-main text-text-main line-clamp-1">Acoustic Nights Live</h3>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1">Blue Tokai, Indiranagar</p>
+<div class="flex items-center mt-3">
+<div class="flex -space-x-2">
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACBsg80Mg7Qczd3uoldk4cZcj2rDZG7kL9C4e4p3tV8BcZzeGOKivtYOE-O2DYCP-5SgPfuhHWBXOyzUCsN4Zk_azGFmE_as4F8IWNrR7llTYdzb3gvpuaOjq7c0apKfSn5xqjKGeSQEbdtbsZginLjDxxIIxoO3xbLeVzeuwN2Ebx_gtsubGG7yTFuIq9Pqa-HBOh8B6VE09LwXQNF5KQ-mHw6ZgpOCsH6xfj-ozBH7tz8Xs9gzg9Nun2S6WHKO1GDuIXhDVerws"/>
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiN-ZZaHkZlbDO7FVbjVcaf_qF5lE5Xx_IUXu-Mi8FblCndaO0sH_TekGwLGipLPIRuHWlFQswXEj7pUK6gEmUcy-z6aF6AMT09b6LLT8OUFPO7DIAo_iBj7UpSxmvUpNHp3j7Pp-0CL-16egS_7qd8zTiJ26LWxgAL5w-J3-Vi3UecXsEJmsBuKyw6K1j75z4eWRYXMbijczkPvORk5v0za-IHm6RytsiNlykXp-QeO2Njn1wV8AMlcZ_gwZslzXphvJw2E1XqxM"/>
+<div class="w-6 h-6 rounded-full border-2 border-surface-light bg-primary-dark/20 flex items-center justify-center">
+<span class="text-[8px] font-bold text-primary-dark">+89</span>
+</div>
+</div>
+<span class="ml-3 font-label-xs text-label-xs text-text-secondary uppercase">Going</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB (Contextual for Explore/Events) -->
+<button class="fixed bottom-20 right-4 w-14 h-14 bg-primary-dark text-white rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-[64px] bg-surface-light/95 dark:bg-background-dark/95 backdrop-blur-md flex justify-around items-center px-container-padding pb-safe z-50 shadow-lg dark:shadow-none">
+<a class="flex flex-col items-center justify-center text-primary-dark font-label-bold transition-transform duration-200 scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[10px] uppercase mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary font-label-bold hover:text-primary-dark/80 transition-colors" href="#">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="text-[10px] uppercase mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary font-label-bold hover:text-primary-dark/80 transition-colors" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="text-[10px] uppercase mt-1">Organize</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary font-label-bold hover:text-primary-dark/80 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] uppercase mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
