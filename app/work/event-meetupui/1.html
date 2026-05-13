@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Namma Bengaluru - Explore Events</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec37", // Electric Green
+                        "primary-dark": "#0eb52a",
+                        "background-light": "#f6f8f6", // Off-white/Green-tint
+                        "background-dark": "#102213", // Dark Green
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2e1e",
+                        "text-main": "#111812",
+                        "text-secondary": "#637466",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.75rem", 
+                        "xl": "1rem", 
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(19, 236, 55, 0.1)',
+                        'nav': '0 -4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 font-display transition-colors duration-200 antialiased pb-24">
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 pt-6 pb-2">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 text-text-secondary dark:text-gray-400 mb-0.5">
+<span class="material-symbols-outlined text-orange-400 text-[20px] filled">wb_sunny</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Good Morning</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-text-main dark:text-white">Rahul</h1>
+</div>
+<button class="group flex items-center gap-2 bg-surface-light dark:bg-surface-dark py-2 px-3 rounded-full shadow-sm border border-gray-100 dark:border-gray-800 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary text-[20px] filled">location_on</span>
+<span class="text-sm font-bold text-text-main dark:text-gray-200">Indiranagar</span>
+<span class="material-symbols-outlined text-gray-400 text-[18px]">keyboard_arrow_down</span>
+</button>
+</div>
+</header>
+<!-- Featured Section -->
+<section class="mt-4">
+<div class="px-4 flex items-center justify-between mb-3">
+<h2 class="text-xl font-bold text-text-main dark:text-white">Featured Events</h2>
+<a class="text-sm font-bold text-primary hover:text-primary-dark" href="#">See All</a>
+</div>
+<div class="flex overflow-x-auto gap-4 px-4 pb-4 no-scrollbar snap-x snap-mandatory">
+<!-- Card 1 -->
+<div class="relative shrink-0 w-[85vw] max-w-[320px] aspect-[4/3] rounded-2xl overflow-hidden snap-center group shadow-soft cursor-pointer">
+<div class="absolute inset-0 bg-gray-200 animate-pulse"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Runners jogging through the greenery of Lalbagh botanical garden in the morning" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3WFWKfm_-L5QkQVM489_SZ9T_Qx31d-JgcjWkSQiG3lH4Z0MpZIpT1bfUWgicPRfvlfHTjfLuS8EEyP1pJeS3itVISXibXtrTHq2b8_hbHQkYt2qapefr3oLfpXykZASkoOYRlXJFA4nk1RdcOh8l3skE2l4HKByCXfnxmM120ybBstZ6_w-Y_AuhUnGexzM9QLJnfcaiQSBO4tq-HG-L5NyiWY36c36IjsesIIN0XZuzwhs_MTSYU-fTDiNrQyulbB-L7ONiuek");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-5 w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-primary text-black text-[10px] font-bold uppercase tracking-wider">Fitness</span>
+<span class="text-white/90 text-xs font-medium bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded">This Sunday</span>
+</div>
+<h3 class="text-white text-xl font-bold leading-tight mb-1">Lalbagh Community Run</h3>
+<div class="flex items-center justify-between mt-3">
+<p class="text-gray-300 text-sm">6:00 AM • Glass House Entrance</p>
+<button class="size-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-primary hover:text-black transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative shrink-0 w-[85vw] max-w-[320px] aspect-[4/3] rounded-2xl overflow-hidden snap-center group shadow-md cursor-pointer">
+<div class="absolute inset-0 bg-gray-200 animate-pulse"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Volunteers cleaning a street in a city with green vests" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPa8dWadxhhZWlYp0cnRRnsYImIiLWue9bHrNkLhlebEKFYsWlubW6ZR3r63r9I3NTQjAcQ7RV7frxlk1hMsrGe8OFeF1f_iCkJQbwYsTjv3Y2VSbfWeoJ4Brlo-5hInhGeBXLVHtPim1fxD_AUKwXtT51_paHQojxXXbNkILZ48_5onJlXR9R_9GVfy1EtIHxHFT5SUqoDleUgqMXmwCm71vn7d1V9WRNpVAeGaWHyMyeTGX4A7_uv7A19pvY3bZnGHCF8zsu7JE");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-5 w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-white text-black text-[10px] font-bold uppercase tracking-wider">Civic</span>
+<span class="text-white/90 text-xs font-medium bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded">Tomorrow</span>
+</div>
+<h3 class="text-white text-xl font-bold leading-tight mb-1">Koramangala Clean-up</h3>
+<div class="flex items-center justify-between mt-3">
+<p class="text-gray-300 text-sm">7:30 AM • 4th Block Park</p>
+<button class="size-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-primary hover:text-black transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories -->
+<section class="mt-2">
+<div class="flex gap-3 px-4 overflow-x-auto no-scrollbar py-2">
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-primary text-text-main shadow-sm active:scale-95 transition-transform">
+<span class="text-sm font-bold">All</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 text-text-main dark:text-gray-300 shadow-sm active:scale-95 transition-transform">
+<span class="text-sm font-medium">Civic</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 text-text-main dark:text-gray-300 shadow-sm active:scale-95 transition-transform">
+<span class="text-sm font-medium">Fitness</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 text-text-main dark:text-gray-300 shadow-sm active:scale-95 transition-transform">
+<span class="text-sm font-medium">Arts &amp; Culture</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 text-text-main dark:text-gray-300 shadow-sm active:scale-95 transition-transform">
+<span class="text-sm font-medium">Food</span>
+</button>
+</div>
+</section>
+<!-- Happening Near You Feed -->
+<section class="mt-6 px-4">
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-4 flex items-center gap-2">
+            Happening Near You
+            <span class="flex size-2 bg-primary rounded-full animate-pulse"></span>
+</h3>
+<div class="flex flex-col gap-4">
+<!-- Feed Item 1 -->
+<div class="group bg-white dark:bg-surface-dark p-3 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex gap-4 items-stretch active:bg-gray-50 dark:active:bg-surface-dark/80 transition-colors">
+<div class="w-24 h-24 sm:w-28 sm:h-28 shrink-0 bg-gray-200 rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Hands shaping clay on a pottery wheel during a workshop" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9LCOalQLAvK0o0mrC5pbXfcmvIV2bFjfgzof3wip7uzgtmEQoOXIGmc_faVqI6-w7QmAzqomdReLEM9fWZjOHgMpmH5zwdsVHdsMSiGk-Am17HUaJLI2WLj4i5G3HGAxsYZlk5yKh6KQB43lA5weDrgNNB7RxGbtuJ0FDoOoytj3uJWcK4HcvslIe3NsaYzaEVrdkx3pKE6ZTgTNRqd5vWfBurK6hXYaBbNbUxyjb0fgYmm-_FNScLHhwd2OuIisBi9kdrmkTLXs");'>
+</div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-1">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-primary dark:text-primary tracking-wide">TODAY, 4 PM</span>
+<span class="material-symbols-outlined text-gray-300 dark:text-gray-600 text-[20px]">bookmark</span>
+</div>
+<h4 class="text-text-main dark:text-white font-bold text-base leading-snug line-clamp-2">Pottery Workshop at Clay Station</h4>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1 truncate">Indiranagar 12th Main</p>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<div class="flex -space-x-2">
+<img alt="User 1" class="w-6 h-6 rounded-full border-2 border-white dark:border-surface-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArB7uxNiq7ksiz8qMEopci5N0DacTJjSXrG158MtiqFcwkCQok2vdGoHdAQB7OnU7EXc79k1vii7WcVyNAuckY0n3Vu4Tv3ty08k_tP_6wsiJbW6CiXzAz6rUvLxd0PnhuFtViSeAkZsbAkXwu_10jkIMfNUyqHQxF_xi4VLkM5BvR3DRtCoCHyRsvbi7dLxVUpGmz4CC_1GhUQm7Ffu5_ahgoutaKQg4EnICmPmG_V1LIW_tkPXx2SPSWquNs6ZJvUT32AFNwtiY"/>
+<img alt="User 2" class="w-6 h-6 rounded-full border-2 border-white dark:border-surface-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaoxBIQR80X8g_l0eQTAdF0ttdTp-IjI3yPLp3QzCMIAlaCti5J3JexznmJGE0_QFPciAErGX0c_jB2QSG0JkrJSov9AyhlAnmOJ6iFN6Uj4YUMXptXNJE4WFnNWhTFT-gMCqqi5kQ2oDb_iM578SKF0MSaDaWZ3-KqGeS--heDc2c0skLaX-g0XPPr8x6kCh0f6HD5XuguKaf1oHERIdKG21jmQYIPm3JAqzL1zhVYecvUDOyFZGVG_J_5wyKincaXWUOwYiVQoo"/>
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-surface-dark bg-primary/20 flex items-center justify-center text-[8px] font-bold text-primary-dark">
+                                +20
+                            </div>
+</div>
+<span class="text-xs font-semibold text-text-secondary dark:text-gray-400">22 Joined</span>
+</div>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="group bg-white dark:bg-surface-dark p-3 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex gap-4 items-stretch active:bg-gray-50 dark:active:bg-surface-dark/80 transition-colors">
+<div class="w-24 h-24 sm:w-28 sm:h-28 shrink-0 bg-gray-200 rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="People networking in a modern co-working space holding coffee cups" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8Xdj8skZOuiWp1nLGCrS8X8NLVB2s0O9C-PVLkXAW-IOSc5LlDNqxI4vA78aSz1UI8KIguAHK8vo5IZdcbEBgjzihTQ9ywbZAh2gqTpHT7UVnRXIwL6l4LJkHaCy5frwMZDsvtsLGGoY8yXnJ_HU__p52VCMd4E34z_dkWc6QICE7cb9TIJwjl5CtpUV9QPLiHylk0mrd7OrWBXv8PA5m9LOTa0wUyzJJN_9QWvPFXeSPbrjDlZFyhltZiqa2kn2ouX2vOmbpLRA");'>
+</div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-1">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-orange-600 dark:text-orange-400 tracking-wide">TOMORROW, 6 PM</span>
+<span class="material-symbols-outlined text-gray-300 dark:text-gray-600 text-[20px]">bookmark</span>
+</div>
+<h4 class="text-text-main dark:text-white font-bold text-base leading-snug line-clamp-2">Tech Mixer @ WeWork Galaxy</h4>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1 truncate">Residency Road</p>
+</div>
+<div class="flex items-center justify-between mt-2 w-full">
+<span class="inline-flex items-center gap-1 rounded bg-green-50 dark:bg-primary/10 px-2 py-1 text-xs font-medium text-primary-dark dark:text-primary">
+<span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+                            RSVP Open
+                         </span>
+<button class="text-xs font-bold text-text-main underline decoration-primary decoration-2 underline-offset-2">View Details</button>
+</div>
+</div>
+</div>
+<!-- Feed Item 3 -->
+<div class="group bg-white dark:bg-surface-dark p-3 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex gap-4 items-stretch active:bg-gray-50 dark:active:bg-surface-dark/80 transition-colors">
+<div class="w-24 h-24 sm:w-28 sm:h-28 shrink-0 bg-gray-200 rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Fresh vegetables and fruits stall at an outdoor market" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDW5CD_JbYX1WjMr0g9os6YwVlrCQAejhUQZhJ-YsOeB_qipohj5TKGyMECYJEJtkoMiA4YPTJKrOQcMVDf67Rt0m06cw1wbGtGhnp0NapLpg9HxQUpb5ITDNT-4tUt3BWczD73Jdh7iUa2XAQVeeHceVQ0CMvSXenDax_6B-erKc5yLE0fmbgMTV6MBgqhpFvP3SGbR6pgZL-29Xxnf3c4skE9fATOYgt776dSXZNi3VbMbSQrmrKUVhyQG7AU-kLDK3yJnp5at2k");'>
+</div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-1">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-primary dark:text-primary tracking-wide">SATURDAY, 8 AM</span>
+<span class="material-symbols-outlined text-gray-300 dark:text-gray-600 text-[20px]">bookmark</span>
+</div>
+<h4 class="text-text-main dark:text-white font-bold text-base leading-snug line-clamp-2">Organic Farmers Market</h4>
+<p class="text-gray-500 dark:text-gray-400 text-xs mt-1 truncate">Jayanagar 4th Block</p>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<div class="flex -space-x-2">
+<img alt="User 1" class="w-6 h-6 rounded-full border-2 border-white dark:border-surface-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk0mpUjZ5w27ZWjdb1V6JuVTFEsYuEP75iygWBPHW9W1AW11tobpYsYe8i6YT0ih4CTppJl6J41cHGmiwHZ_HBlEfkRNXe8LcVsfIb6gWBiL0msUe8FAMbAzSxt-YSzuGnT4bnaaLEHnsNiTv2vn_WcoZcE0vS0_EzID8lKQ7CR_wWF6W-HO40jlvuOywvA91rlC14QPvvjrC0yWqjMPpfeiuj0ibTtyPpo8S4oFHMmpmbqooFPR68E1ioqg4eNTFGLxsd4VN3bE8"/>
+<img alt="User 2" class="w-6 h-6 rounded-full border-2 border-white dark:border-surface-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOEn30eC4Jve7LudlXmeZTm1nxzWejEKTzSFMJMivn1EaUaB5kmanohjDruZePyXjv-NPmQPqQORjFStjz_a2WY12x7INR7cN82prVupsW7Hh52JeSH8zi0vWg_uCQ_waNVP7MMZYM-urt0g6LgHr7m7HB8DmMDJPU467TV74SLcxQIMm4Z64M_SOxHK3sCZvTn-d0X0HIuvpsgfwWkF1fXEHsxjkMtJr-R71ca_RXsTFZVvdCCTURo6xPmCDzXAssfw_zJHW_NbY"/>
+<img alt="User 3" class="w-6 h-6 rounded-full border-2 border-white dark:border-surface-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6zwxSQr_5A4iKT6XK6x0bzN0vDCG4Hr0jWf2gNMUAmwvDcoWqL85NVYFgA1YpLnHDRlUqhB_3tvxC5sZ9ySpatqsKL1n87nIKQv1ndFU2soi9z6InGZ9fzgzCJS3lnBvj6PiVg9CIzzSeLFrCLR8jhYzBxu1LCA9pbca-LyzcTzvo0u-uhoFfqRn7ack8y9F1DNoIeYyEgP8ZnVxsoPi8W-lGPR760znrTKfILxpYxC1F2hoZVXL98SgB0eZ0e1d-dkIPXxoAz1A"/>
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-surface-dark bg-primary/20 flex items-center justify-center text-[8px] font-bold text-primary-dark">
+                                +150
+                            </div>
+</div>
+<span class="text-xs font-semibold text-text-secondary dark:text-gray-400">150+ Joined</span>
+</div>
+</div>
+</div>
+</div>
+<!-- See More Button -->
+<button class="w-full mt-4 py-3 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 text-sm font-semibold text-text-secondary dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-surface-dark transition-colors">
+            View all 24 events near you
+        </button>
+</section>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800 pb-safe pt-2 px-6 shadow-nav z-50">
+<div class="flex items-center justify-between max-w-md mx-auto h-16">
+<button class="flex flex-col items-center gap-1 w-16 group">
+<span class="material-symbols-outlined text-primary text-[26px] filled group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-bold text-primary">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 w-16 group text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 w-16 group text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">confirmation_number</span>
+<span class="text-[10px] font-medium">Tickets</span>
+</button>
+<button class="flex flex-col items-center gap-1 w-16 group text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+</nav>
+<div class="h-6"></div> <!-- Safe area spacing for mobile -->
+</body></html>

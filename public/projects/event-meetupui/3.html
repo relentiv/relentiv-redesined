@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live City Pulse Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec37",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Pulse Animation for Markers */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.33); }
+            80%, 100% { opacity: 0; }
+        }
+        .ring-container {
+            position: relative;
+        }
+        .circle {
+            width: 15px;
+            height: 15px;
+            background-color: #13ec37;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid white;
+            z-index: 2;
+        }
+        .ringring {
+            border: 3px solid #13ec37;
+            -webkit-border-radius: 30px;
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-animation: pulsate 2s ease-out;
+            -webkit-animation-iteration-count: infinite;
+            opacity: 0.0;
+            z-index: 1;
+        }
+        @keyframes pulsate {
+            0% {-webkit-transform: translate(-50%, -50%) scale(0.1, 0.1); opacity: 0.0;}
+            50% {opacity: 1.0;}
+            100% {-webkit-transform: translate(-50%, -50%) scale(1.2, 1.2); opacity: 0.0;}
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111812] overflow-hidden h-screen w-full flex flex-col">
+<!-- Main Map Container -->
+<div class="relative flex-1 w-full h-full overflow-hidden">
+<!-- Map Background Layer -->
+<!-- Using a placeholder to simulate map tiles -->
+<div class="absolute inset-0 z-0 bg-cover bg-center pointer-events-auto" data-alt="Detailed street map of Bengaluru with light grey roads and parks" data-location="Bengaluru" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_tL8acRTZqTl7IPuxWtZDPjk1BndllGqvIbri4K2GBo4y7HGU4qCCGDwQlg2LLiz81xzNz3FP4KX1uF5wd0sTA2T-uuTfFvmNWtkeBDaHetQ8MpbO3SAGy7Lperj0G8IEjOHbzlHdN4x6_QEj8K0HoLiRfVohzY4LOFSYsR9mNOEQMtjyPZKH_v3s41SSGP75dLr2iKOSppbpaRFw2jYGjH0YH1q8uQMmMgkyL9PTBWdV5LJHKEG4oCTqDIDsvPSlua9hv97MQ50');">
+<!-- Simulated Map Overlay Elements (Zones) -->
+<!-- Green Zone: Well maintained path -->
+<div class="absolute top-[30%] left-[20%] w-48 h-32 bg-primary/10 rounded-full blur-xl border border-primary/20 transform -rotate-12 pointer-events-none"></div>
+<!-- Amber Zone: Construction (simulated with yellow tint) -->
+<div class="absolute bottom-[40%] right-[10%] w-40 h-40 bg-yellow-400/10 rounded-full blur-xl border border-yellow-500/20 pointer-events-none"></div>
+</div>
+<!-- Markers Layer -->
+<!-- Marker 1: Active Event -->
+<div class="absolute top-[35%] left-[25%] cursor-pointer group z-10">
+<div class="ring-container">
+<div class="ringring"></div>
+<div class="circle shadow-md"></div>
+</div>
+<div class="absolute top-6 left-1/2 transform -translate-x-1/2 bg-white dark:bg-neutral-800 px-2 py-1 rounded shadow text-[10px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Clean-up Drive
+            </div>
+</div>
+<!-- Marker 2: Active Run (Selected) -->
+<div class="absolute top-[52%] left-[48%] cursor-pointer z-10">
+<div class="ring-container">
+<div class="ringring" style="animation-duration: 1.5s;"></div>
+<div class="circle bg-primary scale-125 border-white shadow-lg"></div>
+</div>
+</div>
+<!-- Marker 3: Static Point -->
+<div class="absolute bottom-[30%] right-[30%] cursor-pointer z-10">
+<div class="w-3 h-3 bg-white border-2 border-[#111812] rounded-full shadow-sm"></div>
+</div>
+<!-- Header / Search Layer -->
+<div class="absolute top-0 left-0 right-0 z-30 flex flex-col pt-12 px-4 pb-4 bg-gradient-to-b from-white/95 via-white/80 to-transparent dark:from-background-dark/95 dark:via-background-dark/80 pointer-events-none">
+<!-- Search Bar -->
+<div class="pointer-events-auto w-full mb-3">
+<label class="flex flex-col w-full h-12 shadow-[0_4px_12px_rgba(0,0,0,0.08)] rounded-xl">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-white dark:bg-neutral-800 overflow-hidden">
+<div class="text-[#618968] flex border-none items-center justify-center pl-4 pr-2">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden text-[#111812] dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-[#618968] px-2 text-base font-normal leading-normal" placeholder="Search Indiranagar, Koramangala..." value=""/>
+<div class="flex items-center justify-center pr-4">
+<div class="size-8 rounded-full overflow-hidden border border-gray-100" data-alt="User profile picture showing a smiling person" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpHf8QBGio-9-QIrOUmkA2IBu62KQSWo95ALP5nI_e0Wd2rHf_Me9Wjeu5t6WXACYQEpwjJSShBH-1ewNUfMo6oRnAoGUtloKCeFYRcEpdgQleFR2-7OigvwRxN995Ty3gEeVBc_v3ntyzuZfYsmEUHbs3MIddrwI8ogkLcnr8miM4omywk5J4GXjm9KExEKhqTp7qfl7oVFXmPtbUcz7LBB8fwdYIha6jWBhHQqQZXdRp0ZAclN5mkoc2DErBLXFQCixYqGoJJ1U'); background-size: cover;"></div>
+</div>
+</div>
+</label>
+</div>
+<!-- Filter Chips -->
+<div class="pointer-events-auto flex gap-2 overflow-x-auto hide-scrollbar pb-2 mask-linear-fade">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary pl-4 pr-4 shadow-sm transition-transform active:scale-95">
+<p class="text-[#111812] text-sm font-bold leading-normal">Events</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700 pl-4 pr-4 shadow-sm transition-transform active:scale-95">
+<p class="text-[#111812] dark:text-white text-sm font-medium leading-normal">Clean-ups</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700 pl-4 pr-4 shadow-sm transition-transform active:scale-95">
+<p class="text-[#111812] dark:text-white text-sm font-medium leading-normal">Runs</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700 pl-4 pr-4 shadow-sm transition-transform active:scale-95">
+<p class="text-[#111812] dark:text-white text-sm font-medium leading-normal">Safety</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700 pl-4 pr-4 shadow-sm transition-transform active:scale-95">
+<p class="text-[#111812] dark:text-white text-sm font-medium leading-normal">Road Quality</p>
+</button>
+</div>
+</div>
+<!-- Map Controls (Right Side) -->
+<div class="absolute top-44 right-4 z-20 flex flex-col gap-3 pointer-events-auto">
+<div class="flex flex-col gap-0.5 shadow-[0_2px_8px_rgba(0,0,0,0.1)] rounded-lg overflow-hidden">
+<button class="flex size-10 items-center justify-center bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700">
+<span class="material-symbols-outlined text-[#111812] dark:text-white text-[24px]">add</span>
+</button>
+<div class="h-[1px] w-full bg-gray-100 dark:bg-neutral-700"></div>
+<button class="flex size-10 items-center justify-center bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700">
+<span class="material-symbols-outlined text-[#111812] dark:text-white text-[24px]">remove</span>
+</button>
+</div>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white dark:bg-neutral-800 shadow-[0_2px_8px_rgba(0,0,0,0.1)] text-primary">
+<span class="material-symbols-outlined text-[24px]">near_me</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-white dark:bg-neutral-800 shadow-[0_2px_8px_rgba(0,0,0,0.1)] mt-2">
+<span class="material-symbols-outlined text-[#111812] dark:text-white text-[24px]">layers</span>
+</button>
+</div>
+<!-- Bottom Layers (Floating Content) -->
+<div class="absolute bottom-0 left-0 right-0 z-40 flex flex-col justify-end pb-[80px] pointer-events-none bg-gradient-to-t from-white/20 to-transparent">
+<!-- Secondary FAB: Share Update -->
+<div class="flex justify-end px-4 mb-4 pointer-events-auto">
+<button class="flex items-center justify-center rounded-full h-10 px-4 bg-white dark:bg-neutral-800 text-[#111812] dark:text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] gap-2 text-sm font-bold border border-gray-100 dark:border-neutral-700 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px] text-primary">edit</span>
+<span class="truncate">Share Update</span>
+</button>
+</div>
+<!-- Event Preview Card -->
+<div class="px-4 pointer-events-auto">
+<div class="flex items-stretch justify-between gap-3 rounded-xl bg-white dark:bg-neutral-800 p-3 shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-gray-100 dark:border-neutral-700">
+<div class="flex flex-[2_2_0px] flex-col justify-between gap-2">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="bg-primary/20 text-green-800 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded">FITNESS</span>
+<span class="text-xs text-gray-500 font-medium">0.8km away</span>
+</div>
+<p class="text-[#111812] dark:text-white text-base font-bold leading-tight mt-1">Sunday Cubbon Run</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<p class="text-[#618968] text-xs font-semibold leading-normal">Starting in 20m</p>
+</div>
+</div>
+<button class="flex w-fit cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-[#f0f4f1] dark:bg-neutral-700 text-[#111812] dark:text-white text-sm font-bold leading-normal hover:bg-gray-200 transition-colors">
+                            Join Event
+                        </button>
+</div>
+<div class="w-28 bg-center bg-no-repeat bg-cover rounded-lg flex-shrink-0" data-alt="Group of people running in a park with trees in background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBnKDhrTDP0_mHfgwqrhPnjUmQo38SXlpoIZrIz39JPsGiKDyJFo47sLwOpl7U8e33LcUnL1z8r3vFNawd-JFJGZrkV0cHvGY80QH7XCmRw2qWhY9uaCd0OTArOL_kWP6klIurG_YHsD4EmC7oSCu2cMm5pWh0z_YKaxQl438ukq6-8PSbBjPOkSI4cy6SHOPNxCXjWCnXrkLYgE2Z9E6HJh-BM-3jsvlyjYGb41HBcfu6HkmJ0zYkTWYm1j1lUhlG_F6swOaJILS4");'></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="z-50 bg-white dark:bg-neutral-900 border-t border-[#f0f4f1] dark:border-neutral-800 px-4 pb-6 pt-2 shadow-[0_-4px_16px_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-end">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#111812] dark:text-white group" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[28px] text-[#111812] dark:text-primary fill-current">map</span>
+<span class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-primary rounded-full border border-white dark:border-neutral-900"></span>
+</div>
+<p class="text-[#111812] dark:text-white text-[10px] font-bold tracking-wide">Map</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#618968] hover:text-[#111812] dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">explore</span>
+<p class="text-current text-[10px] font-medium tracking-wide">Discover</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#618968] hover:text-[#111812] dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">groups</span>
+<p class="text-current text-[10px] font-medium tracking-wide">Community</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#618968] hover:text-[#111812] dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[28px]">account_circle</span>
+<p class="text-current text-[10px] font-medium tracking-wide">Profile</p>
+</a>
+</div>
+</div>
+</body></html>
