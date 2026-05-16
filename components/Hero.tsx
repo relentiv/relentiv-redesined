@@ -323,31 +323,31 @@ export function Hero() {
 
   return (
     <>
-     <section className="relative flex w-full items-start overflow-hidden pb-24 pt-6 md:min-h-[calc(100svh-7rem)] md:pb-14 md:pt-10 lg:pt-12 before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r before:from-black/65 before:via-black/35 before:to-transparent before:pointer-events-none">
+     <section className="relative flex w-full items-start overflow-hidden pb-24 pt-6 md:min-h-[calc(100svh-7rem)] md:pb-14 md:pt-10 lg:pt-12 before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r  before:to-transparent before:pointer-events-none">
         <div className="relative mx-auto flex w-full max-w-[1600px] flex-col px-7 md:px-12">
           {/* Subtle structural wireframes */}
           <Crosshair className="-top-12 -left-12 hidden lg:flex" />
           <Crosshair className="right-6 top-20 hidden lg:flex" />
           <div className="hidden lg:block absolute -top-16 -left-[24px] w-[1px] h-[120%] bg-gradient-to-b from-transparent via-white/10 to-transparent pointer-events-none" />
 
-          <div className="relative z-10 max-w-5xl">
+          <div className="relative z-10 text-center w-full">
             <p className="mb-4 text-[10px] font-semibold uppercase text-white/55 md:mb-5 md:text-xs">
               Product design + engineering
             </p>
 
-            <h1 className="max-w-5xl text-[clamp(2.7rem,10vw,4.8rem)] font-semibold leading-[1.02] text-white md:text-[clamp(4.6rem,7vw,7.4rem)] md:leading-[0.96]">
+            <h1 className=" text-[clamp(2.7rem,10vw,4.8rem)] font-semibold leading-[1.02] text-white md:text-[clamp(4.6rem,7vw,7.4rem)] md:leading-[0.96]">
               <span className="block">Engineering the</span>
               <span className="block bg-gradient-to-b from-white via-white/82 to-white/42 bg-clip-text pb-1 text-transparent">
                 Future of Tech.
               </span>
             </h1>
 
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-neutral-300 sm:text-base md:mt-6 md:max-w-xl md:text-lg">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-neutral-300 sm:text-base md:mt-6 mx-auto md:text-lg">
               We build web, mobile, AI, and interactive products with the polish
               clients notice first.
             </p>
 
-            <div className="mt-6 flex flex-row flex-wrap items-center gap-3 md:mt-8">
+            <div className="mt-6 flex flex-row flex-wrap items-center gap-3 md:mt-8 mx-auto w-full justify-center">
               <button
                 onClick={openCalPopup}
                 className="w-fit rounded-full border-2 border-dotted border-white/45 px-5 py-3 font-mono text-[11px] uppercase text-white/90 transition-all duration-300 ease-in-out hover:border-solid hover:border-white hover:bg-white hover:text-black md:px-7 md:py-3.5 md:text-xs"
@@ -366,7 +366,7 @@ export function Hero() {
             
           </div>
 
-          <div className="relative z-10 mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-y border-white/15 bg-black/25 backdrop-blur-sm py-3 sm:mt-8 sm:grid-cols-4 sm:gap-2 md:mt-10 md:py-4">
+          {/* <div className="relative z-10 mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-y border-white/15 bg-black/25 backdrop-blur-sm py-3 sm:mt-8 sm:grid-cols-4 sm:gap-2 md:mt-10 md:py-4">
             {capabilities.map((capability, index) => (
               <div
                 key={capability}
@@ -380,11 +380,11 @@ export function Hero() {
                 </span>
               </div>
             ))}
-          </div>
+          </div> */}
 
           
 
-          <div className="relative z-10 mt-3 flex flex-wrap gap-1.5 sm:mt-4 sm:gap-2">
+          {/* <div className="relative z-10 mt-3 flex flex-wrap gap-1.5 sm:mt-4 sm:gap-2">
             {disciplines.map((discipline) => (
               <span
                 key={discipline}
@@ -393,7 +393,7 @@ export function Hero() {
                 {discipline}
               </span>
             ))}
-          </div>
+          </div> */}
 
             <div className="w-full flex items-center justify-center">
           <div className="mt-7 w-full max-w-xl border border-white/15 bg-black/45 p-2 backdrop-blur-md md:mt-9">

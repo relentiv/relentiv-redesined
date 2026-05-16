@@ -13,8 +13,9 @@ type BackgroundMode = "im" | "rb" | "gr";
 // im = static image, rb = React Bits Aurora, gr = CSS agency gradient.
 const BACKGROUND_MODE: BackgroundMode = "im";
 const STATIC_BACKGROUND_IMAGE_URL =
+"https://cdn.pixabay.com/photo/2022/08/21/12/05/lightning-7401119_1280.jpg"
   // "https://cdn.pixabay.com/photo/2020/11/04/17/11/architecture-5713016_1280.jpg";
-  "https://cdn.pixabay.com/photo/2025/06/05/09/22/people-9642583_1280.jpg"
+  // "https://cdn.pixabay.com/photo/2025/06/05/09/22/people-9642583_1280.jpg"
   // "https://cdn.pixabay.com/photo/2023/01/02/13/03/architect-7692052_1280.jpg"
   // "https://cdn.pixabay.com/photo/2020/03/09/13/55/engineer-4915807_1280.jpg"
 
